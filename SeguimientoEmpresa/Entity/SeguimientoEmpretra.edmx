@@ -1,0 +1,691 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="seguimiento_empresaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Beneficiario">
+          <Key>
+            <PropertyRef Name="ben_identificacion" />
+          </Key>
+          <Property Name="ben_tipoIdentificacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="ben_idTrabajador" Type="nvarchar" MaxLength="50" />
+          <Property Name="ben_identificacion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ben_nombreCompleto" Type="nvarchar" MaxLength="50" />
+          <Property Name="ben_geneto" Type="nvarchar" MaxLength="50" />
+          <Property Name="ben_fechaNacimiento" Type="nvarchar" MaxLength="50" />
+          <Property Name="ben_direccion" Type="nvarchar" MaxLength="50" />
+          <Property Name="ben_telefono" Type="nvarchar" MaxLength="50" />
+          <Property Name="ben_email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Contrato">
+          <Key>
+            <PropertyRef Name="cont_idEmpresa" />
+            <PropertyRef Name="cont_idTrabajador" />
+          </Key>
+          <Property Name="cont_idEmpresa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cont_idTrabajador" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cont_fecha" Type="nvarchar" MaxLength="50" />
+          <Property Name="cont_numero" Type="nvarchar" MaxLength="50" />
+          <Property Name="cont_descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="cont_fechaInicio" Type="nvarchar" MaxLength="50" />
+          <Property Name="cont_fechaFinal" Type="nvarchar" MaxLength="50" />
+          <Property Name="cont_estado" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ContratoDetalle">
+          <Key>
+            <PropertyRef Name="detcon_id" />
+          </Key>
+          <Property Name="detcon_fecha" Type="nvarchar" MaxLength="50" />
+          <Property Name="detcon_hora" Type="nvarchar" MaxLength="50" />
+          <Property Name="detcon_descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="detcon_idMotivo" Type="int" />
+          <Property Name="detcon_resultado" Type="nvarchar" MaxLength="50" />
+          <Property Name="detcon_idEmpresa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="detcon_idTrabajador" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="detcon_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="emp_nit" />
+          </Key>
+          <Property Name="emp_nit" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="emp_razonSocial" Type="nvarchar" MaxLength="50" />
+          <Property Name="emp_telefono" Type="nvarchar" MaxLength="50" />
+          <Property Name="emp_email" Type="nvarchar" MaxLength="50" />
+          <Property Name="emp_paginaWeb" Type="nvarchar" MaxLength="50" />
+          <Property Name="emp_direccion" Type="nvarchar" MaxLength="50" />
+          <Property Name="emp_representanteLegar" Type="nvarchar" MaxLength="50" />
+          <Property Name="emp_telefonoRepresentante" Type="nvarchar" MaxLength="50" />
+          <Property Name="emp_contrato" Type="nvarchar" MaxLength="50" />
+          <Property Name="emp_foto1" Type="image" />
+        </EntityType>
+        <EntityType Name="Motivo">
+          <Key>
+            <PropertyRef Name="mot_id" />
+          </Key>
+          <Property Name="mot_id" Type="int" Nullable="false" />
+          <Property Name="mot_descipcion" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sucursal">
+          <Key>
+            <PropertyRef Name="suc_id" />
+          </Key>
+          <Property Name="suc_id" Type="int" Nullable="false" />
+          <Property Name="suc_nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="suc_direccion" Type="nvarchar" MaxLength="50" />
+          <Property Name="suc_telefono" Type="nvarchar" MaxLength="50" />
+          <Property Name="suc_idencargado" Type="nvarchar" MaxLength="50" />
+          <Property Name="suc_encargado" Type="nvarchar" MaxLength="50" />
+          <Property Name="suc_idEmpresa" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Trabajador">
+          <Key>
+            <PropertyRef Name="trab_identificacion" />
+          </Key>
+          <Property Name="trab_tipoIdentificacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="trab_identificacion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="trab_idEmpresa" Type="nvarchar" MaxLength="50" />
+          <Property Name="trab_primerNombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="trab_segundoNombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="trab_primerApellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="trab_segundoApellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="trab_nivelEdicativo" Type="nvarchar" MaxLength="50" />
+          <Property Name="trab_direccion" Type="nvarchar" MaxLength="50" />
+          <Property Name="trab_celular" Type="nvarchar" MaxLength="50" />
+          <Property Name="trab_email" Type="nvarchar" MaxLength="50" />
+          <Property Name="trab_redSocial" Type="nvarchar" MaxLength="50" />
+          <Property Name="trab_fechaNacimiento" Type="nvarchar" MaxLength="50" />
+          <Property Name="trab_profesion" Type="nvarchar" MaxLength="50" />
+          <Property Name="trab_genero" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Beneficiario_Trabajador">
+          <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="0..1" />
+          <End Role="Beneficiario" Type="Self.Beneficiario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajador">
+              <PropertyRef Name="trab_identificacion" />
+            </Principal>
+            <Dependent Role="Beneficiario">
+              <PropertyRef Name="ben_idTrabajador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contrato_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="emp_nit" />
+            </Principal>
+            <Dependent Role="Contrato">
+              <PropertyRef Name="cont_idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contrato_Trabajador">
+          <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="1" />
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajador">
+              <PropertyRef Name="trab_identificacion" />
+            </Principal>
+            <Dependent Role="Contrato">
+              <PropertyRef Name="cont_idTrabajador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContratoDetalle_Contrato">
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="1" />
+          <End Role="ContratoDetalle" Type="Self.ContratoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contrato">
+              <PropertyRef Name="cont_idEmpresa" />
+              <PropertyRef Name="cont_idTrabajador" />
+            </Principal>
+            <Dependent Role="ContratoDetalle">
+              <PropertyRef Name="detcon_idEmpresa" />
+              <PropertyRef Name="detcon_idTrabajador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContratoDetalle_Motivo">
+          <End Role="Motivo" Type="Self.Motivo" Multiplicity="0..1" />
+          <End Role="ContratoDetalle" Type="Self.ContratoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Motivo">
+              <PropertyRef Name="mot_id" />
+            </Principal>
+            <Dependent Role="ContratoDetalle">
+              <PropertyRef Name="detcon_idMotivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sucursal_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="emp_nit" />
+            </Principal>
+            <Dependent Role="Sucursal">
+              <PropertyRef Name="suc_idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="seguimiento_empresaModelStoreContainer">
+          <EntitySet Name="Beneficiario" EntityType="Self.Beneficiario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contrato" EntityType="Self.Contrato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContratoDetalle" EntityType="Self.ContratoDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Motivo" EntityType="Self.Motivo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sucursal" EntityType="Self.Sucursal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trabajador" EntityType="Self.Trabajador" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Beneficiario_Trabajador" Association="Self.FK_Beneficiario_Trabajador">
+            <End Role="Trabajador" EntitySet="Trabajador" />
+            <End Role="Beneficiario" EntitySet="Beneficiario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contrato_Empresa" Association="Self.FK_Contrato_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Contrato" EntitySet="Contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contrato_Trabajador" Association="Self.FK_Contrato_Trabajador">
+            <End Role="Trabajador" EntitySet="Trabajador" />
+            <End Role="Contrato" EntitySet="Contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContratoDetalle_Contrato" Association="Self.FK_ContratoDetalle_Contrato">
+            <End Role="Contrato" EntitySet="Contrato" />
+            <End Role="ContratoDetalle" EntitySet="ContratoDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContratoDetalle_Motivo" Association="Self.FK_ContratoDetalle_Motivo">
+            <End Role="Motivo" EntitySet="Motivo" />
+            <End Role="ContratoDetalle" EntitySet="ContratoDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sucursal_Empresa" Association="Self.FK_Sucursal_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Sucursal" EntitySet="Sucursal" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="seguimiento_empresaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Beneficiario">
+          <Key>
+            <PropertyRef Name="ben_identificacion" />
+          </Key>
+          <Property Name="ben_tipoIdentificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ben_idTrabajador" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ben_identificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ben_nombreCompleto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ben_geneto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ben_fechaNacimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ben_direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ben_telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ben_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Trabajador" Relationship="Self.FK_Beneficiario_Trabajador" FromRole="Beneficiario" ToRole="Trabajador" />
+        </EntityType>
+        <EntityType Name="Contrato">
+          <Key>
+            <PropertyRef Name="cont_idEmpresa" />
+            <PropertyRef Name="cont_idTrabajador" />
+          </Key>
+          <Property Name="cont_idEmpresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cont_idTrabajador" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cont_fecha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cont_numero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cont_descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cont_fechaInicio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cont_fechaFinal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cont_estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Empresa" Relationship="Self.FK_Contrato_Empresa" FromRole="Contrato" ToRole="Empresa" />
+          <NavigationProperty Name="Trabajador" Relationship="Self.FK_Contrato_Trabajador" FromRole="Contrato" ToRole="Trabajador" />
+          <NavigationProperty Name="ContratoDetalle" Relationship="Self.FK_ContratoDetalle_Contrato" FromRole="Contrato" ToRole="ContratoDetalle" />
+        </EntityType>
+        <EntityType Name="ContratoDetalle">
+          <Key>
+            <PropertyRef Name="detcon_id" />
+          </Key>
+          <Property Name="detcon_fecha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="detcon_hora" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="detcon_descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="detcon_idMotivo" Type="Int32" />
+          <Property Name="detcon_resultado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="detcon_idEmpresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="detcon_idTrabajador" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="detcon_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Contrato" Relationship="Self.FK_ContratoDetalle_Contrato" FromRole="ContratoDetalle" ToRole="Contrato" />
+          <NavigationProperty Name="Motivo" Relationship="Self.FK_ContratoDetalle_Motivo" FromRole="ContratoDetalle" ToRole="Motivo" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="emp_nit" />
+          </Key>
+          <Property Name="emp_nit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="emp_razonSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emp_telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emp_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emp_paginaWeb" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emp_direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emp_representanteLegar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emp_telefonoRepresentante" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emp_contrato" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contrato" Relationship="Self.FK_Contrato_Empresa" FromRole="Empresa" ToRole="Contrato" />
+          <Property Name="emp_foto1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Sucursal" Relationship="seguimiento_empresaModel.FK_Sucursal_Empresa" FromRole="Empresa" ToRole="Sucursal" />
+        </EntityType>
+        <EntityType Name="Motivo">
+          <Key>
+            <PropertyRef Name="mot_id" />
+          </Key>
+          <Property Name="mot_id" Type="Int32" Nullable="false" />
+          <Property Name="mot_descipcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ContratoDetalle" Relationship="Self.FK_ContratoDetalle_Motivo" FromRole="Motivo" ToRole="ContratoDetalle" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Trabajador">
+          <Key>
+            <PropertyRef Name="trab_identificacion" />
+          </Key>
+          <Property Name="trab_tipoIdentificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trab_identificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="trab_idEmpresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trab_primerNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trab_segundoNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trab_primerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trab_segundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trab_nivelEdicativo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trab_direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trab_celular" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trab_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trab_redSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trab_fechaNacimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trab_profesion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Beneficiario" Relationship="Self.FK_Beneficiario_Trabajador" FromRole="Trabajador" ToRole="Beneficiario" />
+          <NavigationProperty Name="Contrato" Relationship="Self.FK_Contrato_Trabajador" FromRole="Trabajador" ToRole="Contrato" />
+          <Property Name="trab_genero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Beneficiario_Trabajador">
+          <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="0..1" />
+          <End Role="Beneficiario" Type="Self.Beneficiario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajador">
+              <PropertyRef Name="trab_identificacion" />
+            </Principal>
+            <Dependent Role="Beneficiario">
+              <PropertyRef Name="ben_idTrabajador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contrato_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="emp_nit" />
+            </Principal>
+            <Dependent Role="Contrato">
+              <PropertyRef Name="cont_idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contrato_Trabajador">
+          <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="1" />
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajador">
+              <PropertyRef Name="trab_identificacion" />
+            </Principal>
+            <Dependent Role="Contrato">
+              <PropertyRef Name="cont_idTrabajador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContratoDetalle_Contrato">
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="1" />
+          <End Role="ContratoDetalle" Type="Self.ContratoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contrato">
+              <PropertyRef Name="cont_idEmpresa" />
+              <PropertyRef Name="cont_idTrabajador" />
+            </Principal>
+            <Dependent Role="ContratoDetalle">
+              <PropertyRef Name="detcon_idEmpresa" />
+              <PropertyRef Name="detcon_idTrabajador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContratoDetalle_Motivo">
+          <End Role="Motivo" Type="Self.Motivo" Multiplicity="0..1" />
+          <End Role="ContratoDetalle" Type="Self.ContratoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Motivo">
+              <PropertyRef Name="mot_id" />
+            </Principal>
+            <Dependent Role="ContratoDetalle">
+              <PropertyRef Name="detcon_idMotivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="seguimiento_empresa_entity" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Beneficiario" EntityType="Self.Beneficiario" />
+          <EntitySet Name="Contrato" EntityType="Self.Contrato" />
+          <EntitySet Name="ContratoDetalle" EntityType="Self.ContratoDetalle" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" />
+          <EntitySet Name="Motivo" EntityType="Self.Motivo" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Trabajador" EntityType="Self.Trabajador" />
+          <AssociationSet Name="FK_Beneficiario_Trabajador" Association="Self.FK_Beneficiario_Trabajador">
+            <End Role="Trabajador" EntitySet="Trabajador" />
+            <End Role="Beneficiario" EntitySet="Beneficiario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contrato_Empresa" Association="Self.FK_Contrato_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Contrato" EntitySet="Contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contrato_Trabajador" Association="Self.FK_Contrato_Trabajador">
+            <End Role="Trabajador" EntitySet="Trabajador" />
+            <End Role="Contrato" EntitySet="Contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContratoDetalle_Contrato" Association="Self.FK_ContratoDetalle_Contrato">
+            <End Role="Contrato" EntitySet="Contrato" />
+            <End Role="ContratoDetalle" EntitySet="ContratoDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContratoDetalle_Motivo" Association="Self.FK_ContratoDetalle_Motivo">
+            <End Role="Motivo" EntitySet="Motivo" />
+            <End Role="ContratoDetalle" EntitySet="ContratoDetalle" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(seguimiento_empresaModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(seguimiento_empresaModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Sucursal" EntityType="seguimiento_empresaModel.Sucursal" />
+          <AssociationSet Name="FK_Sucursal_Empresa" Association="seguimiento_empresaModel.FK_Sucursal_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Sucursal" EntitySet="Sucursal" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Sucursal">
+          <Key>
+            <PropertyRef Name="suc_id" />
+          </Key>
+          <Property Name="suc_id" Type="Int32" Nullable="false" />
+          <Property Name="suc_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="suc_direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="suc_telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="suc_idencargado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="suc_encargado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="suc_idEmpresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Empresa" Relationship="seguimiento_empresaModel.FK_Sucursal_Empresa" FromRole="Sucursal" ToRole="Empresa" />
+        </EntityType>
+        <Association Name="FK_Sucursal_Empresa">
+          <End Type="seguimiento_empresaModel.Empresa" Role="Empresa" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="seguimiento_empresaModel.Sucursal" Role="Sucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="emp_nit" />
+            </Principal>
+            <Dependent Role="Sucursal">
+              <PropertyRef Name="suc_idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="seguimiento_empresaModelStoreContainer" CdmEntityContainer="seguimiento_empresa_entity">
+          <EntitySetMapping Name="Beneficiario">
+            <EntityTypeMapping TypeName="seguimiento_empresaModel.Beneficiario">
+              <MappingFragment StoreEntitySet="Beneficiario">
+                <ScalarProperty Name="ben_tipoIdentificacion" ColumnName="ben_tipoIdentificacion" />
+                <ScalarProperty Name="ben_idTrabajador" ColumnName="ben_idTrabajador" />
+                <ScalarProperty Name="ben_identificacion" ColumnName="ben_identificacion" />
+                <ScalarProperty Name="ben_nombreCompleto" ColumnName="ben_nombreCompleto" />
+                <ScalarProperty Name="ben_geneto" ColumnName="ben_geneto" />
+                <ScalarProperty Name="ben_fechaNacimiento" ColumnName="ben_fechaNacimiento" />
+                <ScalarProperty Name="ben_direccion" ColumnName="ben_direccion" />
+                <ScalarProperty Name="ben_telefono" ColumnName="ben_telefono" />
+                <ScalarProperty Name="ben_email" ColumnName="ben_email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contrato">
+            <EntityTypeMapping TypeName="seguimiento_empresaModel.Contrato">
+              <MappingFragment StoreEntitySet="Contrato">
+                <ScalarProperty Name="cont_idEmpresa" ColumnName="cont_idEmpresa" />
+                <ScalarProperty Name="cont_idTrabajador" ColumnName="cont_idTrabajador" />
+                <ScalarProperty Name="cont_fecha" ColumnName="cont_fecha" />
+                <ScalarProperty Name="cont_numero" ColumnName="cont_numero" />
+                <ScalarProperty Name="cont_descripcion" ColumnName="cont_descripcion" />
+                <ScalarProperty Name="cont_fechaInicio" ColumnName="cont_fechaInicio" />
+                <ScalarProperty Name="cont_fechaFinal" ColumnName="cont_fechaFinal" />
+                <ScalarProperty Name="cont_estado" ColumnName="cont_estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContratoDetalle">
+            <EntityTypeMapping TypeName="seguimiento_empresaModel.ContratoDetalle">
+              <MappingFragment StoreEntitySet="ContratoDetalle">
+                <ScalarProperty Name="detcon_fecha" ColumnName="detcon_fecha" />
+                <ScalarProperty Name="detcon_hora" ColumnName="detcon_hora" />
+                <ScalarProperty Name="detcon_descripcion" ColumnName="detcon_descripcion" />
+                <ScalarProperty Name="detcon_idMotivo" ColumnName="detcon_idMotivo" />
+                <ScalarProperty Name="detcon_resultado" ColumnName="detcon_resultado" />
+                <ScalarProperty Name="detcon_idEmpresa" ColumnName="detcon_idEmpresa" />
+                <ScalarProperty Name="detcon_idTrabajador" ColumnName="detcon_idTrabajador" />
+                <ScalarProperty Name="detcon_id" ColumnName="detcon_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresa">
+            <EntityTypeMapping TypeName="seguimiento_empresaModel.Empresa">
+              <MappingFragment StoreEntitySet="Empresa">
+                <ScalarProperty Name="emp_foto1" ColumnName="emp_foto1" />
+                <ScalarProperty Name="emp_nit" ColumnName="emp_nit" />
+                <ScalarProperty Name="emp_razonSocial" ColumnName="emp_razonSocial" />
+                <ScalarProperty Name="emp_telefono" ColumnName="emp_telefono" />
+                <ScalarProperty Name="emp_email" ColumnName="emp_email" />
+                <ScalarProperty Name="emp_paginaWeb" ColumnName="emp_paginaWeb" />
+                <ScalarProperty Name="emp_direccion" ColumnName="emp_direccion" />
+                <ScalarProperty Name="emp_representanteLegar" ColumnName="emp_representanteLegar" />
+                <ScalarProperty Name="emp_telefonoRepresentante" ColumnName="emp_telefonoRepresentante" />
+                <ScalarProperty Name="emp_contrato" ColumnName="emp_contrato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Motivo">
+            <EntityTypeMapping TypeName="seguimiento_empresaModel.Motivo">
+              <MappingFragment StoreEntitySet="Motivo">
+                <ScalarProperty Name="mot_id" ColumnName="mot_id" />
+                <ScalarProperty Name="mot_descipcion" ColumnName="mot_descipcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="seguimiento_empresaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trabajador">
+            <EntityTypeMapping TypeName="seguimiento_empresaModel.Trabajador">
+              <MappingFragment StoreEntitySet="Trabajador">
+                <ScalarProperty Name="trab_genero" ColumnName="trab_genero" />
+                <ScalarProperty Name="trab_tipoIdentificacion" ColumnName="trab_tipoIdentificacion" />
+                <ScalarProperty Name="trab_identificacion" ColumnName="trab_identificacion" />
+                <ScalarProperty Name="trab_idEmpresa" ColumnName="trab_idEmpresa" />
+                <ScalarProperty Name="trab_primerNombre" ColumnName="trab_primerNombre" />
+                <ScalarProperty Name="trab_segundoNombre" ColumnName="trab_segundoNombre" />
+                <ScalarProperty Name="trab_primerApellido" ColumnName="trab_primerApellido" />
+                <ScalarProperty Name="trab_segundoApellido" ColumnName="trab_segundoApellido" />
+                <ScalarProperty Name="trab_nivelEdicativo" ColumnName="trab_nivelEdicativo" />
+                <ScalarProperty Name="trab_direccion" ColumnName="trab_direccion" />
+                <ScalarProperty Name="trab_celular" ColumnName="trab_celular" />
+                <ScalarProperty Name="trab_email" ColumnName="trab_email" />
+                <ScalarProperty Name="trab_redSocial" ColumnName="trab_redSocial" />
+                <ScalarProperty Name="trab_fechaNacimiento" ColumnName="trab_fechaNacimiento" />
+                <ScalarProperty Name="trab_profesion" ColumnName="trab_profesion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="seguimiento_empresaModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="seguimiento_empresaModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="seguimiento_empresaModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="seguimiento_empresaModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="seguimiento_empresaModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="seguimiento_empresaModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="seguimiento_empresaModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="seguimiento_empresaModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="seguimiento_empresaModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Sucursal">
+            <EntityTypeMapping TypeName="seguimiento_empresaModel.Sucursal">
+              <MappingFragment StoreEntitySet="Sucursal">
+                <ScalarProperty Name="suc_idEmpresa" ColumnName="suc_idEmpresa" />
+                <ScalarProperty Name="suc_encargado" ColumnName="suc_encargado" />
+                <ScalarProperty Name="suc_idencargado" ColumnName="suc_idencargado" />
+                <ScalarProperty Name="suc_telefono" ColumnName="suc_telefono" />
+                <ScalarProperty Name="suc_direccion" ColumnName="suc_direccion" />
+                <ScalarProperty Name="suc_nombre" ColumnName="suc_nombre" />
+                <ScalarProperty Name="suc_id" ColumnName="suc_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
