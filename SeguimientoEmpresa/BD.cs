@@ -11,6 +11,7 @@ namespace SeguimientoEmpresa
     {
         //public static seguimiento_empresa_entity seguimiento_Empresa_Entity = new seguimiento_empresa_entity();
         public static seguimiento_empresaEntity seguimiento_Empresa_Entity = new seguimiento_empresaEntity();
+         
 
     }
 }
