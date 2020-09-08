@@ -12,28 +12,18 @@ namespace SeguimientoEmpresa.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Contrato
+    public partial class EstadoContrato
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Contrato()
+        public EstadoContrato()
         {
-            this.ContratoDetalle = new HashSet<ContratoDetalle>();
+            this.Contrato = new HashSet<Contrato>();
         }
     
-        public string cont_idEmpresa { get; set; }
-        public string cont_idTrabajador { get; set; }
-        public string cont_numero { get; set; }
-        public string cont_fecha { get; set; }
-        public string cont_descripcion { get; set; }
-        public string cont_fechaInicio { get; set; }
-        public string cont_fechaFinal { get; set; }
-        public Nullable<int> cont_idestado { get; set; }
-        public int cont_id { get; set; }
+        public int est_id { get; set; }
+        public string est_descripcion { get; set; }
     
-        public virtual Empresa Empresa { get; set; }
-        public virtual EstadoContrato EstadoContrato { get; set; }
-        public virtual Trabajador Trabajador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ContratoDetalle> ContratoDetalle { get; set; }
+        public virtual ICollection<Contrato> Contrato { get; set; }
     }
 }

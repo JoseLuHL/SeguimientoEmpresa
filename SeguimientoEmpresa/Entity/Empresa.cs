@@ -17,8 +17,8 @@ namespace SeguimientoEmpresa.Entity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Empresa()
         {
-            this.Contrato = new HashSet<Contrato>();
             this.Sucursal = new HashSet<Sucursal>();
+            this.Contrato = new HashSet<Contrato>();
         }
     
         public string emp_nit { get; set; }
@@ -33,8 +33,8 @@ namespace SeguimientoEmpresa.Entity
         public byte[] emp_foto1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Contrato> Contrato { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sucursal> Sucursal { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contrato> Contrato { get; set; }
     }
 }

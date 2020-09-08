@@ -21,9 +21,8 @@ namespace SeguimientoEmpresa.Entity
             this.Contrato = new HashSet<Contrato>();
         }
     
-        public string trab_tipoIdentificacion { get; set; }
+        public Nullable<int> trab_tipoIdentificacion { get; set; }
         public string trab_identificacion { get; set; }
-        public string trab_idEmpresa { get; set; }
         public string trab_primerNombre { get; set; }
         public string trab_segundoNombre { get; set; }
         public string trab_primerApellido { get; set; }
@@ -35,10 +34,14 @@ namespace SeguimientoEmpresa.Entity
         public string trab_redSocial { get; set; }
         public string trab_fechaNacimiento { get; set; }
         public string trab_profesion { get; set; }
-        public string trab_genero { get; set; }
+        public Nullable<int> trab_genero { get; set; }
+        public byte[] trab_foto { get; set; }
+        public string trab_idEmpresa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Beneficiario> Beneficiario { get; set; }
+        public virtual Genero Genero { get; set; }
+        public virtual TipoIdentificacion TipoIdentificacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contrato> Contrato { get; set; }
     }

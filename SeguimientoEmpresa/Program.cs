@@ -17,7 +17,7 @@ namespace SeguimientoEmpresa
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new formEmpresa());
+            Application.Run(new Main());
         }
     }
 }

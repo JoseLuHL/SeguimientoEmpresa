@@ -28,391 +28,128 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
-            this.gpbxFotografia = new System.Windows.Forms.GroupBox();
-            this.btnCapturarF = new System.Windows.Forms.Button();
-            this.btnCargarF = new System.Windows.Forms.Button();
-            this.pbxFotografia = new System.Windows.Forms.PictureBox();
-            this.gpbxDatosGenerales = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtPuesto = new System.Windows.Forms.TextBox();
-            this.lblPuesto = new System.Windows.Forms.Label();
-            this.txtCelular = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.lblCelular = new System.Windows.Forms.Label();
-            this.lblEmail = new System.Windows.Forms.Label();
-            this.cmbFechaNac = new System.Windows.Forms.DateTimePicker();
-            this.txtApellidoMaterno = new System.Windows.Forms.TextBox();
-            this.txtApellidoPaterno = new System.Windows.Forms.TextBox();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtCURP = new System.Windows.Forms.TextBox();
-            this.lblFechaNac = new System.Windows.Forms.Label();
-            this.lblApellidoMaterno = new System.Windows.Forms.Label();
-            this.lblApellidoPaterno = new System.Windows.Forms.Label();
-            this.lblNombre = new System.Windows.Forms.Label();
-            this.lblCURP = new System.Windows.Forms.Label();
-            this.gpbxFotografia.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxFotografia)).BeginInit();
-            this.gpbxDatosGenerales.SuspendLayout();
+            this.BtnEmpresas = new FontAwesome.Sharp.IconButton();
+            this.BtnReporte = new FontAwesome.Sharp.IconButton();
+            this.BtnAyuda = new FontAwesome.Sharp.IconButton();
+            this.BtnTrabajador = new FontAwesome.Sharp.IconButton();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.SuspendLayout();
             // 
-            // btnCancelar
+            // BtnEmpresas
             // 
-            this.btnCancelar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(556, 304);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(118, 38);
-            this.btnCancelar.TabIndex = 16;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.BtnEmpresas.FlatAppearance.BorderSize = 0;
+            this.BtnEmpresas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnEmpresas.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.BtnEmpresas.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEmpresas.IconChar = FontAwesome.Sharp.IconChar.FirefoxBrowser;
+            this.BtnEmpresas.IconColor = System.Drawing.Color.Black;
+            this.BtnEmpresas.IconSize = 50;
+            this.BtnEmpresas.Location = new System.Drawing.Point(76, 163);
+            this.BtnEmpresas.Name = "BtnEmpresas";
+            this.BtnEmpresas.Rotation = 0D;
+            this.BtnEmpresas.Size = new System.Drawing.Size(132, 70);
+            this.BtnEmpresas.TabIndex = 0;
+            this.BtnEmpresas.Text = "Empresas";
+            this.BtnEmpresas.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.BtnEmpresas.UseVisualStyleBackColor = true;
+            this.BtnEmpresas.Click += new System.EventHandler(this.BtnEmpresas_Click);
             // 
-            // btnAceptar
+            // BtnReporte
             // 
-            this.btnAceptar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.Location = new System.Drawing.Point(417, 304);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(112, 38);
-            this.btnAceptar.TabIndex = 15;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.BtnReporte.FlatAppearance.BorderSize = 0;
+            this.BtnReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnReporte.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.BtnReporte.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnReporte.IconChar = FontAwesome.Sharp.IconChar.FirefoxBrowser;
+            this.BtnReporte.IconColor = System.Drawing.Color.Black;
+            this.BtnReporte.IconSize = 50;
+            this.BtnReporte.Location = new System.Drawing.Point(445, 163);
+            this.BtnReporte.Name = "BtnReporte";
+            this.BtnReporte.Rotation = 0D;
+            this.BtnReporte.Size = new System.Drawing.Size(132, 70);
+            this.BtnReporte.TabIndex = 1;
+            this.BtnReporte.Text = "Reporte";
+            this.BtnReporte.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.BtnReporte.UseVisualStyleBackColor = true;
             // 
-            // gpbxFotografia
+            // BtnAyuda
             // 
-            this.gpbxFotografia.BackColor = System.Drawing.Color.White;
-            this.gpbxFotografia.Controls.Add(this.btnCapturarF);
-            this.gpbxFotografia.Controls.Add(this.btnCargarF);
-            this.gpbxFotografia.Controls.Add(this.pbxFotografia);
-            this.gpbxFotografia.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbxFotografia.Location = new System.Drawing.Point(417, 23);
-            this.gpbxFotografia.Name = "gpbxFotografia";
-            this.gpbxFotografia.Size = new System.Drawing.Size(392, 233);
-            this.gpbxFotografia.TabIndex = 14;
-            this.gpbxFotografia.TabStop = false;
-            this.gpbxFotografia.Text = "Fotografía";
+            this.BtnAyuda.FlatAppearance.BorderSize = 0;
+            this.BtnAyuda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAyuda.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.BtnAyuda.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAyuda.IconChar = FontAwesome.Sharp.IconChar.FirefoxBrowser;
+            this.BtnAyuda.IconColor = System.Drawing.Color.Black;
+            this.BtnAyuda.IconSize = 50;
+            this.BtnAyuda.Location = new System.Drawing.Point(619, 163);
+            this.BtnAyuda.Name = "BtnAyuda";
+            this.BtnAyuda.Rotation = 0D;
+            this.BtnAyuda.Size = new System.Drawing.Size(132, 70);
+            this.BtnAyuda.TabIndex = 2;
+            this.BtnAyuda.Text = "Ayuda";
+            this.BtnAyuda.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.BtnAyuda.UseVisualStyleBackColor = true;
             // 
-            // btnCapturarF
+            // BtnTrabajador
             // 
-            this.btnCapturarF.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCapturarF.Location = new System.Drawing.Point(258, 141);
-            this.btnCapturarF.Name = "btnCapturarF";
-            this.btnCapturarF.Size = new System.Drawing.Size(105, 30);
-            this.btnCapturarF.TabIndex = 27;
-            this.btnCapturarF.Text = "Tomar Foto";
-            this.btnCapturarF.UseVisualStyleBackColor = true;
+            this.BtnTrabajador.FlatAppearance.BorderSize = 0;
+            this.BtnTrabajador.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnTrabajador.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.BtnTrabajador.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnTrabajador.IconChar = FontAwesome.Sharp.IconChar.FirefoxBrowser;
+            this.BtnTrabajador.IconColor = System.Drawing.Color.Black;
+            this.BtnTrabajador.IconSize = 50;
+            this.BtnTrabajador.Location = new System.Drawing.Point(267, 163);
+            this.BtnTrabajador.Name = "BtnTrabajador";
+            this.BtnTrabajador.Rotation = 0D;
+            this.BtnTrabajador.Size = new System.Drawing.Size(132, 70);
+            this.BtnTrabajador.TabIndex = 3;
+            this.BtnTrabajador.Text = "Trabajadores";
+            this.BtnTrabajador.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.BtnTrabajador.UseVisualStyleBackColor = true;
+            this.BtnTrabajador.Click += new System.EventHandler(this.BtnTrabajador_Click);
             // 
-            // btnCargarF
+            // materialLabel1
             // 
-            this.btnCargarF.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCargarF.Location = new System.Drawing.Point(258, 75);
-            this.btnCargarF.Name = "btnCargarF";
-            this.btnCargarF.Size = new System.Drawing.Size(102, 30);
-            this.btnCargarF.TabIndex = 26;
-            this.btnCargarF.Text = "Cargar Foto";
-            this.btnCargarF.UseVisualStyleBackColor = true;
-            // 
-            // pbxFotografia
-            // 
-            this.pbxFotografia.InitialImage = null;
-            this.pbxFotografia.Location = new System.Drawing.Point(10, 26);
-            this.pbxFotografia.Name = "pbxFotografia";
-            this.pbxFotografia.Size = new System.Drawing.Size(224, 194);
-            this.pbxFotografia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbxFotografia.TabIndex = 0;
-            this.pbxFotografia.TabStop = false;
-            // 
-            // gpbxDatosGenerales
-            // 
-            this.gpbxDatosGenerales.BackColor = System.Drawing.Color.White;
-            this.gpbxDatosGenerales.Controls.Add(this.textBox3);
-            this.gpbxDatosGenerales.Controls.Add(this.label3);
-            this.gpbxDatosGenerales.Controls.Add(this.textBox2);
-            this.gpbxDatosGenerales.Controls.Add(this.label2);
-            this.gpbxDatosGenerales.Controls.Add(this.textBox1);
-            this.gpbxDatosGenerales.Controls.Add(this.label1);
-            this.gpbxDatosGenerales.Controls.Add(this.txtPuesto);
-            this.gpbxDatosGenerales.Controls.Add(this.lblPuesto);
-            this.gpbxDatosGenerales.Controls.Add(this.txtCelular);
-            this.gpbxDatosGenerales.Controls.Add(this.txtEmail);
-            this.gpbxDatosGenerales.Controls.Add(this.lblCelular);
-            this.gpbxDatosGenerales.Controls.Add(this.lblEmail);
-            this.gpbxDatosGenerales.Controls.Add(this.cmbFechaNac);
-            this.gpbxDatosGenerales.Controls.Add(this.txtApellidoMaterno);
-            this.gpbxDatosGenerales.Controls.Add(this.txtApellidoPaterno);
-            this.gpbxDatosGenerales.Controls.Add(this.txtNombre);
-            this.gpbxDatosGenerales.Controls.Add(this.txtCURP);
-            this.gpbxDatosGenerales.Controls.Add(this.lblFechaNac);
-            this.gpbxDatosGenerales.Controls.Add(this.lblApellidoMaterno);
-            this.gpbxDatosGenerales.Controls.Add(this.lblApellidoPaterno);
-            this.gpbxDatosGenerales.Controls.Add(this.lblNombre);
-            this.gpbxDatosGenerales.Controls.Add(this.lblCURP);
-            this.gpbxDatosGenerales.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbxDatosGenerales.Location = new System.Drawing.Point(12, 23);
-            this.gpbxDatosGenerales.Name = "gpbxDatosGenerales";
-            this.gpbxDatosGenerales.Size = new System.Drawing.Size(386, 411);
-            this.gpbxDatosGenerales.TabIndex = 13;
-            this.gpbxDatosGenerales.TabStop = false;
-            this.gpbxDatosGenerales.Text = "Datos Generales";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.textBox3.Location = new System.Drawing.Point(168, 161);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(194, 26);
-            this.textBox3.TabIndex = 26;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 167);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 20);
-            this.label3.TabIndex = 25;
-            this.label3.Text = "Genero";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.textBox2.Location = new System.Drawing.Point(168, 359);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(194, 26);
-            this.textBox2.TabIndex = 24;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 365);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 20);
-            this.label2.TabIndex = 23;
-            this.label2.Text = "Profesión:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.textBox1.Location = new System.Drawing.Point(168, 327);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(194, 26);
-            this.textBox1.TabIndex = 22;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 333);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 20);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Red Social:";
-            // 
-            // txtPuesto
-            // 
-            this.txtPuesto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.txtPuesto.Location = new System.Drawing.Point(168, 295);
-            this.txtPuesto.Name = "txtPuesto";
-            this.txtPuesto.Size = new System.Drawing.Size(194, 26);
-            this.txtPuesto.TabIndex = 20;
-            // 
-            // lblPuesto
-            // 
-            this.lblPuesto.AutoSize = true;
-            this.lblPuesto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPuesto.Location = new System.Drawing.Point(6, 301);
-            this.lblPuesto.Name = "lblPuesto";
-            this.lblPuesto.Size = new System.Drawing.Size(75, 20);
-            this.lblPuesto.TabIndex = 18;
-            this.lblPuesto.Text = "Teléfono:";
-            // 
-            // txtCelular
-            // 
-            this.txtCelular.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCelular.Location = new System.Drawing.Point(168, 262);
-            this.txtCelular.MaxLength = 11;
-            this.txtCelular.Name = "txtCelular";
-            this.txtCelular.Size = new System.Drawing.Size(194, 27);
-            this.txtCelular.TabIndex = 15;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(168, 230);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(194, 27);
-            this.txtEmail.TabIndex = 14;
-            // 
-            // lblCelular
-            // 
-            this.lblCelular.AutoSize = true;
-            this.lblCelular.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCelular.Location = new System.Drawing.Point(6, 268);
-            this.lblCelular.Name = "lblCelular";
-            this.lblCelular.Size = new System.Drawing.Size(87, 21);
-            this.lblCelular.TabIndex = 13;
-            this.lblCelular.Text = "Dirección:";
-            // 
-            // lblEmail
-            // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(6, 236);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(140, 21);
-            this.lblEmail.TabIndex = 12;
-            this.lblEmail.Text = "Novel Educativo";
-            // 
-            // cmbFechaNac
-            // 
-            this.cmbFechaNac.CustomFormat = "dd-MM-yyyy";
-            this.cmbFechaNac.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbFechaNac.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.cmbFechaNac.Location = new System.Drawing.Point(193, 198);
-            this.cmbFechaNac.Name = "cmbFechaNac";
-            this.cmbFechaNac.Size = new System.Drawing.Size(129, 27);
-            this.cmbFechaNac.TabIndex = 11;
-            // 
-            // txtApellidoMaterno
-            // 
-            this.txtApellidoMaterno.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellidoMaterno.Location = new System.Drawing.Point(168, 128);
-            this.txtApellidoMaterno.Name = "txtApellidoMaterno";
-            this.txtApellidoMaterno.Size = new System.Drawing.Size(194, 27);
-            this.txtApellidoMaterno.TabIndex = 9;
-            // 
-            // txtApellidoPaterno
-            // 
-            this.txtApellidoPaterno.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellidoPaterno.Location = new System.Drawing.Point(168, 94);
-            this.txtApellidoPaterno.Name = "txtApellidoPaterno";
-            this.txtApellidoPaterno.Size = new System.Drawing.Size(194, 27);
-            this.txtApellidoPaterno.TabIndex = 8;
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(168, 62);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(194, 27);
-            this.txtNombre.TabIndex = 7;
-            // 
-            // txtCURP
-            // 
-            this.txtCURP.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCURP.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCURP.Location = new System.Drawing.Point(168, 28);
-            this.txtCURP.MaxLength = 18;
-            this.txtCURP.Name = "txtCURP";
-            this.txtCURP.Size = new System.Drawing.Size(194, 27);
-            this.txtCURP.TabIndex = 6;
-            // 
-            // lblFechaNac
-            // 
-            this.lblFechaNac.AutoSize = true;
-            this.lblFechaNac.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaNac.Location = new System.Drawing.Point(6, 201);
-            this.lblFechaNac.Name = "lblFechaNac";
-            this.lblFechaNac.Size = new System.Drawing.Size(181, 21);
-            this.lblFechaNac.TabIndex = 5;
-            this.lblFechaNac.Text = "Fecha de nacimiento:";
-            // 
-            // lblApellidoMaterno
-            // 
-            this.lblApellidoMaterno.AutoSize = true;
-            this.lblApellidoMaterno.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApellidoMaterno.Location = new System.Drawing.Point(6, 131);
-            this.lblApellidoMaterno.Name = "lblApellidoMaterno";
-            this.lblApellidoMaterno.Size = new System.Drawing.Size(151, 21);
-            this.lblApellidoMaterno.TabIndex = 4;
-            this.lblApellidoMaterno.Text = "Segundo Nombre:";
-            // 
-            // lblApellidoPaterno
-            // 
-            this.lblApellidoPaterno.AutoSize = true;
-            this.lblApellidoPaterno.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApellidoPaterno.Location = new System.Drawing.Point(6, 100);
-            this.lblApellidoPaterno.Name = "lblApellidoPaterno";
-            this.lblApellidoPaterno.Size = new System.Drawing.Size(128, 21);
-            this.lblApellidoPaterno.TabIndex = 3;
-            this.lblApellidoPaterno.Text = "Primer Nombre:";
-            // 
-            // lblNombre
-            // 
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.Location = new System.Drawing.Point(6, 68);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(122, 21);
-            this.lblNombre.TabIndex = 2;
-            this.lblNombre.Text = "Identificación:";
-            // 
-            // lblCURP
-            // 
-            this.lblCURP.AutoSize = true;
-            this.lblCURP.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCURP.Location = new System.Drawing.Point(6, 34);
-            this.lblCURP.Name = "lblCURP";
-            this.lblCURP.Size = new System.Drawing.Size(158, 21);
-            this.lblCURP.TabIndex = 1;
-            this.lblCURP.Text = "Tipo Identificacion:";
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.BackColor = System.Drawing.Color.White;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel1.Location = new System.Drawing.Point(115, 307);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(76, 57);
+            this.materialLabel1.TabIndex = 4;
+            this.materialLabel1.Text = "Contratos\r\nabiertos\r\n5";
+            this.materialLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(792, 427);
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.gpbxFotografia);
-            this.Controls.Add(this.gpbxDatosGenerales);
+            this.Controls.Add(this.materialLabel1);
+            this.Controls.Add(this.BtnTrabajador);
+            this.Controls.Add(this.BtnAyuda);
+            this.Controls.Add(this.BtnReporte);
+            this.Controls.Add(this.BtnEmpresas);
             this.Name = "Main";
-            this.Text = "Main";
+            this.Text = "Menu";
             this.Load += new System.EventHandler(this.Main_Load);
-            this.gpbxFotografia.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbxFotografia)).EndInit();
-            this.gpbxDatosGenerales.ResumeLayout(false);
-            this.gpbxDatosGenerales.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.GroupBox gpbxFotografia;
-        private System.Windows.Forms.Button btnCapturarF;
-        private System.Windows.Forms.Button btnCargarF;
-        private System.Windows.Forms.PictureBox pbxFotografia;
-        private System.Windows.Forms.GroupBox gpbxDatosGenerales;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtPuesto;
-        private System.Windows.Forms.Label lblPuesto;
-        private System.Windows.Forms.TextBox txtCelular;
-        private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.Label lblCelular;
-        private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.DateTimePicker cmbFechaNac;
-        private System.Windows.Forms.TextBox txtApellidoMaterno;
-        private System.Windows.Forms.TextBox txtApellidoPaterno;
-        private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.TextBox txtCURP;
-        private System.Windows.Forms.Label lblFechaNac;
-        private System.Windows.Forms.Label lblApellidoMaterno;
-        private System.Windows.Forms.Label lblApellidoPaterno;
-        private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.Label lblCURP;
+        private FontAwesome.Sharp.IconButton BtnEmpresas;
+        private FontAwesome.Sharp.IconButton BtnReporte;
+        private FontAwesome.Sharp.IconButton BtnAyuda;
+        private FontAwesome.Sharp.IconButton BtnTrabajador;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
     }
 }
 

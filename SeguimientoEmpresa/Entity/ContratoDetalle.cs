@@ -14,14 +14,16 @@ namespace SeguimientoEmpresa.Entity
     
     public partial class ContratoDetalle
     {
+        public int detcon_id { get; set; }
+        public Nullable<int> detcon_idcontrato { get; set; }
         public string detcon_fecha { get; set; }
         public string detcon_hora { get; set; }
         public string detcon_descripcion { get; set; }
         public Nullable<int> detcon_idMotivo { get; set; }
         public string detcon_resultado { get; set; }
         public string detcon_idEmpresa { get; set; }
+        public string detcon_numeroContrato { get; set; }
         public string detcon_idTrabajador { get; set; }
-        public string detcon_id { get; set; }
     
         public virtual Contrato Contrato { get; set; }
         public virtual Motivo Motivo { get; set; }

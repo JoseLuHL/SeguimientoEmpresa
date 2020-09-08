@@ -29,33 +29,38 @@
         private void InitializeComponent()
         {
             this.DgvEmpresa = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DgTrabajadorColTipoIden = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DgTrabajadorColNombre1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgvColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgvColNumero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgvColTrabajador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgvColIdentificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgvColFechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgvColFechaFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgvColEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gpbxDatosGenerales = new System.Windows.Forms.GroupBox();
-            this.TxtEstado = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.TxtNumeroContrato = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.CboEstado = new System.Windows.Forms.ComboBox();
+            this.DtFechaFinal = new System.Windows.Forms.DateTimePicker();
+            this.DtFechaInicio = new System.Windows.Forms.DateTimePicker();
+            this.TxtIdentificacion = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.TxtFechaFinal = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtDescripcion = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.TxtFechaInicio = new System.Windows.Forms.TextBox();
             this.TxtTrabajador = new System.Windows.Forms.TextBox();
             this.lblApellidoPaterno = new System.Windows.Forms.Label();
             this.lblCURP = new System.Windows.Forms.Label();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
-            this.TxtIdentificacion = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgvDetalle = new System.Windows.Forms.DataGridView();
+            this.DgvDetalleColDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgvDetalleColMotivo = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.DgvDetalleColResultado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAceptar = new FontAwesome.Sharp.IconButton();
+            this.BtnNuevo = new FontAwesome.Sharp.IconButton();
+            this.BtnCancelar = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.DgvEmpresa)).BeginInit();
             this.gpbxDatosGenerales.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvDetalle)).BeginInit();
             this.SuspendLayout();
             // 
             // DgvEmpresa
@@ -63,116 +68,188 @@
             this.DgvEmpresa.AllowUserToAddRows = false;
             this.DgvEmpresa.AllowUserToDeleteRows = false;
             this.DgvEmpresa.BackgroundColor = System.Drawing.Color.White;
+            this.DgvEmpresa.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DgvEmpresa.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
-            this.DgvEmpresa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvEmpresa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DgvEmpresa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.DgTrabajadorColTipoIden,
-            this.DgTrabajadorColNombre1,
-            this.Column2,
-            this.Column3,
-            this.Column4});
-            this.DgvEmpresa.Location = new System.Drawing.Point(6, 257);
+            this.DgvColId,
+            this.DgvColNumero,
+            this.DgvColTrabajador,
+            this.DgvColIdentificacion,
+            this.DgvColFechaInicio,
+            this.DgvColFechaFinal,
+            this.DgvColEstado});
+            this.DgvEmpresa.EnableHeadersVisualStyles = false;
+            this.DgvEmpresa.Location = new System.Drawing.Point(18, 335);
             this.DgvEmpresa.MultiSelect = false;
             this.DgvEmpresa.Name = "DgvEmpresa";
             this.DgvEmpresa.ReadOnly = true;
+            this.DgvEmpresa.RowHeadersVisible = false;
             this.DgvEmpresa.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvEmpresa.Size = new System.Drawing.Size(797, 340);
+            this.DgvEmpresa.Size = new System.Drawing.Size(630, 352);
             this.DgvEmpresa.TabIndex = 10;
+            this.DgvEmpresa.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvEmpresa_CellClick);
             // 
-            // Column1
+            // DgvColId
             // 
-            this.Column1.HeaderText = "Numero";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 70;
+            this.DgvColId.HeaderText = "Id";
+            this.DgvColId.Name = "DgvColId";
+            this.DgvColId.ReadOnly = true;
+            this.DgvColId.Visible = false;
             // 
-            // DgTrabajadorColTipoIden
+            // DgvColNumero
             // 
-            this.DgTrabajadorColTipoIden.HeaderText = "Trabajador";
-            this.DgTrabajadorColTipoIden.Name = "DgTrabajadorColTipoIden";
-            this.DgTrabajadorColTipoIden.ReadOnly = true;
-            this.DgTrabajadorColTipoIden.Width = 250;
+            this.DgvColNumero.HeaderText = "Numero";
+            this.DgvColNumero.Name = "DgvColNumero";
+            this.DgvColNumero.ReadOnly = true;
+            this.DgvColNumero.Width = 70;
             // 
-            // DgTrabajadorColNombre1
+            // DgvColTrabajador
             // 
-            this.DgTrabajadorColNombre1.HeaderText = "Fecha";
-            this.DgTrabajadorColNombre1.Name = "DgTrabajadorColNombre1";
-            this.DgTrabajadorColNombre1.ReadOnly = true;
+            this.DgvColTrabajador.HeaderText = "Trabajador";
+            this.DgvColTrabajador.Name = "DgvColTrabajador";
+            this.DgvColTrabajador.ReadOnly = true;
+            this.DgvColTrabajador.Width = 250;
             // 
-            // Column2
+            // DgvColIdentificacion
             // 
-            this.Column2.HeaderText = "Fecha Inicio";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.DgvColIdentificacion.HeaderText = "Identificacion";
+            this.DgvColIdentificacion.Name = "DgvColIdentificacion";
+            this.DgvColIdentificacion.ReadOnly = true;
+            this.DgvColIdentificacion.Visible = false;
             // 
-            // Column3
+            // DgvColFechaInicio
             // 
-            this.Column3.HeaderText = "Fecha Final";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
+            this.DgvColFechaInicio.HeaderText = "Fecha Inicio";
+            this.DgvColFechaInicio.Name = "DgvColFechaInicio";
+            this.DgvColFechaInicio.ReadOnly = true;
             // 
-            // Column4
+            // DgvColFechaFinal
             // 
-            this.Column4.HeaderText = "Estado";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
+            this.DgvColFechaFinal.HeaderText = "Fecha Final";
+            this.DgvColFechaFinal.Name = "DgvColFechaFinal";
+            this.DgvColFechaFinal.ReadOnly = true;
+            // 
+            // DgvColEstado
+            // 
+            this.DgvColEstado.HeaderText = "Estado";
+            this.DgvColEstado.Name = "DgvColEstado";
+            this.DgvColEstado.ReadOnly = true;
             // 
             // gpbxDatosGenerales
             // 
             this.gpbxDatosGenerales.BackColor = System.Drawing.Color.White;
+            this.gpbxDatosGenerales.Controls.Add(this.label5);
+            this.gpbxDatosGenerales.Controls.Add(this.TxtNumeroContrato);
+            this.gpbxDatosGenerales.Controls.Add(this.label3);
+            this.gpbxDatosGenerales.Controls.Add(this.CboEstado);
+            this.gpbxDatosGenerales.Controls.Add(this.DtFechaFinal);
+            this.gpbxDatosGenerales.Controls.Add(this.DtFechaInicio);
             this.gpbxDatosGenerales.Controls.Add(this.TxtIdentificacion);
-            this.gpbxDatosGenerales.Controls.Add(this.btnCancelar);
-            this.gpbxDatosGenerales.Controls.Add(this.btnAceptar);
-            this.gpbxDatosGenerales.Controls.Add(this.TxtEstado);
             this.gpbxDatosGenerales.Controls.Add(this.label2);
-            this.gpbxDatosGenerales.Controls.Add(this.TxtFechaFinal);
             this.gpbxDatosGenerales.Controls.Add(this.label1);
             this.gpbxDatosGenerales.Controls.Add(this.TxtDescripcion);
             this.gpbxDatosGenerales.Controls.Add(this.label4);
-            this.gpbxDatosGenerales.Controls.Add(this.TxtFechaInicio);
             this.gpbxDatosGenerales.Controls.Add(this.TxtTrabajador);
             this.gpbxDatosGenerales.Controls.Add(this.lblApellidoPaterno);
             this.gpbxDatosGenerales.Controls.Add(this.lblCURP);
             this.gpbxDatosGenerales.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbxDatosGenerales.Location = new System.Drawing.Point(12, 12);
+            this.gpbxDatosGenerales.Location = new System.Drawing.Point(18, 79);
             this.gpbxDatosGenerales.Name = "gpbxDatosGenerales";
-            this.gpbxDatosGenerales.Size = new System.Drawing.Size(791, 239);
-            this.gpbxDatosGenerales.TabIndex = 15;
+            this.gpbxDatosGenerales.Size = new System.Drawing.Size(1346, 174);
+            this.gpbxDatosGenerales.TabIndex = 0;
             this.gpbxDatosGenerales.TabStop = false;
             this.gpbxDatosGenerales.Text = "Datos Generales";
             // 
-            // TxtEstado
+            // label5
             // 
-            this.TxtEstado.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtEstado.Location = new System.Drawing.Point(330, 85);
-            this.TxtEstado.Name = "TxtEstado";
-            this.TxtEstado.Size = new System.Drawing.Size(154, 26);
-            this.TxtEstado.TabIndex = 32;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(184, 60);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 20);
+            this.label5.TabIndex = 41;
+            this.label5.Text = "Nombres";
+            // 
+            // TxtNumeroContrato
+            // 
+            this.TxtNumeroContrato.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtNumeroContrato.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNumeroContrato.Location = new System.Drawing.Point(985, 29);
+            this.TxtNumeroContrato.MaxLength = 18;
+            this.TxtNumeroContrato.Name = "TxtNumeroContrato";
+            this.TxtNumeroContrato.Size = new System.Drawing.Size(123, 26);
+            this.TxtNumeroContrato.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(981, 60);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(137, 20);
+            this.label3.TabIndex = 39;
+            this.label3.Text = "Numero Contrato";
+            // 
+            // CboEstado
+            // 
+            this.CboEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboEstado.Enabled = false;
+            this.CboEstado.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.CboEstado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboEstado.FormattingEnabled = true;
+            this.CboEstado.Location = new System.Drawing.Point(813, 29);
+            this.CboEstado.Name = "CboEstado";
+            this.CboEstado.Size = new System.Drawing.Size(158, 29);
+            this.CboEstado.TabIndex = 3;
+            // 
+            // DtFechaFinal
+            // 
+            this.DtFechaFinal.CalendarFont = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DtFechaFinal.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DtFechaFinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DtFechaFinal.Location = new System.Drawing.Point(667, 29);
+            this.DtFechaFinal.Name = "DtFechaFinal";
+            this.DtFechaFinal.Size = new System.Drawing.Size(132, 27);
+            this.DtFechaFinal.TabIndex = 2;
+            // 
+            // DtFechaInicio
+            // 
+            this.DtFechaInicio.CalendarFont = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DtFechaInicio.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DtFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DtFechaInicio.Location = new System.Drawing.Point(535, 29);
+            this.DtFechaInicio.Name = "DtFechaInicio";
+            this.DtFechaInicio.Size = new System.Drawing.Size(126, 27);
+            this.DtFechaInicio.TabIndex = 1;
+            // 
+            // TxtIdentificacion
+            // 
+            this.TxtIdentificacion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtIdentificacion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtIdentificacion.Location = new System.Drawing.Point(17, 29);
+            this.TxtIdentificacion.MaxLength = 18;
+            this.TxtIdentificacion.Name = "TxtIdentificacion";
+            this.TxtIdentificacion.Size = new System.Drawing.Size(165, 26);
+            this.TxtIdentificacion.TabIndex = 0;
+            this.TxtIdentificacion.TextChanged += new System.EventHandler(this.TxtIdentificacion_TextChanged);
+            this.TxtIdentificacion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtIdentificacion_KeyDown);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(326, 62);
+            this.label2.Location = new System.Drawing.Point(809, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 20);
             this.label2.TabIndex = 31;
             this.label2.Text = "Estado";
             // 
-            // TxtFechaFinal
-            // 
-            this.TxtFechaFinal.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtFechaFinal.Location = new System.Drawing.Point(170, 85);
-            this.TxtFechaFinal.Name = "TxtFechaFinal";
-            this.TxtFechaFinal.Size = new System.Drawing.Size(154, 26);
-            this.TxtFechaFinal.TabIndex = 30;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(166, 62);
+            this.label1.Location = new System.Drawing.Point(663, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 20);
             this.label1.TabIndex = 29;
@@ -181,45 +258,38 @@
             // TxtDescripcion
             // 
             this.TxtDescripcion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDescripcion.Location = new System.Drawing.Point(10, 141);
+            this.TxtDescripcion.Location = new System.Drawing.Point(17, 92);
             this.TxtDescripcion.Multiline = true;
             this.TxtDescripcion.Name = "TxtDescripcion";
-            this.TxtDescripcion.Size = new System.Drawing.Size(775, 92);
-            this.TxtDescripcion.TabIndex = 28;
+            this.TxtDescripcion.Size = new System.Drawing.Size(1091, 48);
+            this.TxtDescripcion.TabIndex = 4;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 118);
+            this.label4.Location = new System.Drawing.Point(13, 143);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 20);
+            this.label4.Size = new System.Drawing.Size(96, 20);
             this.label4.TabIndex = 27;
-            this.label4.Text = "Descripción:";
-            // 
-            // TxtFechaInicio
-            // 
-            this.TxtFechaInicio.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtFechaInicio.Location = new System.Drawing.Point(10, 85);
-            this.TxtFechaInicio.Name = "TxtFechaInicio";
-            this.TxtFechaInicio.Size = new System.Drawing.Size(154, 26);
-            this.TxtFechaInicio.TabIndex = 8;
+            this.label4.Text = "Descripción";
             // 
             // TxtTrabajador
             // 
             this.TxtTrabajador.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtTrabajador.Enabled = false;
             this.TxtTrabajador.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTrabajador.Location = new System.Drawing.Point(168, 28);
+            this.TxtTrabajador.Location = new System.Drawing.Point(188, 29);
             this.TxtTrabajador.MaxLength = 18;
             this.TxtTrabajador.Name = "TxtTrabajador";
-            this.TxtTrabajador.Size = new System.Drawing.Size(380, 26);
-            this.TxtTrabajador.TabIndex = 6;
+            this.TxtTrabajador.Size = new System.Drawing.Size(341, 26);
+            this.TxtTrabajador.TabIndex = 10;
             // 
             // lblApellidoPaterno
             // 
             this.lblApellidoPaterno.AutoSize = true;
             this.lblApellidoPaterno.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApellidoPaterno.Location = new System.Drawing.Point(6, 62);
+            this.lblApellidoPaterno.Location = new System.Drawing.Point(531, 60);
             this.lblApellidoPaterno.Name = "lblApellidoPaterno";
             this.lblApellidoPaterno.Size = new System.Drawing.Size(99, 20);
             this.lblApellidoPaterno.TabIndex = 3;
@@ -229,97 +299,136 @@
             // 
             this.lblCURP.AutoSize = true;
             this.lblCURP.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCURP.Location = new System.Drawing.Point(6, 34);
+            this.lblCURP.Location = new System.Drawing.Point(13, 60);
             this.lblCURP.Name = "lblCURP";
-            this.lblCURP.Size = new System.Drawing.Size(147, 20);
+            this.lblCURP.Size = new System.Drawing.Size(111, 20);
             this.lblCURP.TabIndex = 1;
-            this.lblCURP.Text = "Tipo Identificacion:";
+            this.lblCURP.Text = "Identificación";
             // 
-            // btnCancelar
+            // DgvDetalle
             // 
-            this.btnCancelar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(667, 97);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(118, 38);
-            this.btnCancelar.TabIndex = 33;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.DgvDetalle.BackgroundColor = System.Drawing.Color.White;
+            this.DgvDetalle.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DgvDetalle.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
+            this.DgvDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.DgvDetalle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DgvDetalleColDescripcion,
+            this.DgvDetalleColMotivo,
+            this.DgvDetalleColResultado});
+            this.DgvDetalle.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.DgvDetalle.EnableHeadersVisualStyles = false;
+            this.DgvDetalle.Location = new System.Drawing.Point(654, 335);
+            this.DgvDetalle.MultiSelect = false;
+            this.DgvDetalle.Name = "DgvDetalle";
+            this.DgvDetalle.RowHeadersVisible = false;
+            this.DgvDetalle.RowHeadersWidth = 43;
+            this.DgvDetalle.Size = new System.Drawing.Size(720, 326);
+            this.DgvDetalle.TabIndex = 16;
+            // 
+            // DgvDetalleColDescripcion
+            // 
+            this.DgvDetalleColDescripcion.HeaderText = "Descripcion";
+            this.DgvDetalleColDescripcion.Name = "DgvDetalleColDescripcion";
+            this.DgvDetalleColDescripcion.Width = 300;
+            // 
+            // DgvDetalleColMotivo
+            // 
+            this.DgvDetalleColMotivo.HeaderText = "Motivo";
+            this.DgvDetalleColMotivo.Name = "DgvDetalleColMotivo";
+            this.DgvDetalleColMotivo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvDetalleColMotivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.DgvDetalleColMotivo.Width = 160;
+            // 
+            // DgvDetalleColResultado
+            // 
+            this.DgvDetalleColResultado.HeaderText = "Resultado";
+            this.DgvDetalleColResultado.Name = "DgvDetalleColResultado";
+            this.DgvDetalleColResultado.Width = 250;
             // 
             // btnAceptar
             // 
+            this.btnAceptar.FlatAppearance.BorderSize = 0;
+            this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAceptar.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
             this.btnAceptar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.Location = new System.Drawing.Point(543, 97);
+            this.btnAceptar.IconChar = FontAwesome.Sharp.IconChar.FirefoxBrowser;
+            this.btnAceptar.IconColor = System.Drawing.Color.Black;
+            this.btnAceptar.IconSize = 40;
+            this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAceptar.Location = new System.Drawing.Point(125, 269);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(112, 38);
-            this.btnAceptar.TabIndex = 34;
+            this.btnAceptar.Padding = new System.Windows.Forms.Padding(5);
+            this.btnAceptar.Rotation = 0D;
+            this.btnAceptar.Size = new System.Drawing.Size(151, 52);
+            this.btnAceptar.TabIndex = 5;
             this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click_1);
             // 
-            // TxtIdentificacion
+            // BtnNuevo
             // 
-            this.TxtIdentificacion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtIdentificacion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtIdentificacion.Location = new System.Drawing.Point(554, 26);
-            this.TxtIdentificacion.MaxLength = 18;
-            this.TxtIdentificacion.Name = "TxtIdentificacion";
-            this.TxtIdentificacion.Size = new System.Drawing.Size(231, 26);
-            this.TxtIdentificacion.TabIndex = 35;
+            this.BtnNuevo.FlatAppearance.BorderSize = 0;
+            this.BtnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnNuevo.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.BtnNuevo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnNuevo.IconChar = FontAwesome.Sharp.IconChar.Neuter;
+            this.BtnNuevo.IconColor = System.Drawing.Color.Black;
+            this.BtnNuevo.IconSize = 40;
+            this.BtnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnNuevo.Location = new System.Drawing.Point(428, 269);
+            this.BtnNuevo.Name = "BtnNuevo";
+            this.BtnNuevo.Padding = new System.Windows.Forms.Padding(5);
+            this.BtnNuevo.Rotation = 0D;
+            this.BtnNuevo.Size = new System.Drawing.Size(128, 52);
+            this.BtnNuevo.TabIndex = 7;
+            this.BtnNuevo.Text = "Nuevo";
+            this.BtnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnNuevo.UseVisualStyleBackColor = true;
+            this.BtnNuevo.Visible = false;
+            this.BtnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click_1);
             // 
-            // dataGridView1
+            // BtnCancelar
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column5,
-            this.Column6,
-            this.Column7});
-            this.dataGridView1.Location = new System.Drawing.Point(822, 66);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(506, 531);
-            this.dataGridView1.TabIndex = 16;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Descripcion";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 300;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Motivo";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Resultado";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
+            this.BtnCancelar.FlatAppearance.BorderSize = 0;
+            this.BtnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCancelar.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.BtnCancelar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCancelar.IconChar = FontAwesome.Sharp.IconChar.Ban;
+            this.BtnCancelar.IconColor = System.Drawing.Color.Black;
+            this.BtnCancelar.IconSize = 40;
+            this.BtnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnCancelar.Location = new System.Drawing.Point(282, 269);
+            this.BtnCancelar.Name = "BtnCancelar";
+            this.BtnCancelar.Padding = new System.Windows.Forms.Padding(5);
+            this.BtnCancelar.Rotation = 0D;
+            this.BtnCancelar.Size = new System.Drawing.Size(140, 52);
+            this.BtnCancelar.TabIndex = 6;
+            this.BtnCancelar.Text = "Cancelar";
+            this.BtnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnCancelar.UseVisualStyleBackColor = true;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // formContrato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1330, 641);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(1386, 699);
+            this.Controls.Add(this.BtnCancelar);
+            this.Controls.Add(this.DgvDetalle);
             this.Controls.Add(this.gpbxDatosGenerales);
+            this.Controls.Add(this.BtnNuevo);
             this.Controls.Add(this.DgvEmpresa);
+            this.Controls.Add(this.btnAceptar);
             this.Name = "formContrato";
             this.Text = "Contratos";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.formContrato_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvEmpresa)).EndInit();
             this.gpbxDatosGenerales.ResumeLayout(false);
             this.gpbxDatosGenerales.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvDetalle)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -327,29 +436,34 @@
         #endregion
 
         private System.Windows.Forms.DataGridView DgvEmpresa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DgTrabajadorColTipoIden;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DgTrabajadorColNombre1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.GroupBox gpbxDatosGenerales;
         private System.Windows.Forms.TextBox TxtDescripcion;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox TxtFechaInicio;
         private System.Windows.Forms.TextBox TxtTrabajador;
         private System.Windows.Forms.Label lblApellidoPaterno;
         private System.Windows.Forms.Label lblCURP;
-        private System.Windows.Forms.TextBox TxtFechaFinal;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox TxtEstado;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.TextBox TxtIdentificacion;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DateTimePicker DtFechaFinal;
+        private System.Windows.Forms.DateTimePicker DtFechaInicio;
+        private System.Windows.Forms.ComboBox CboEstado;
+        private System.Windows.Forms.TextBox TxtNumeroContrato;
+        private System.Windows.Forms.Label label3;
+        private FontAwesome.Sharp.IconButton btnAceptar;
+        private FontAwesome.Sharp.IconButton BtnNuevo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DgvColId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DgvColNumero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DgvColTrabajador;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DgvColIdentificacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DgvColFechaInicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DgvColFechaFinal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DgvColEstado;
+        private FontAwesome.Sharp.IconButton BtnCancelar;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridView DgvDetalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DgvDetalleColDescripcion;
+        private System.Windows.Forms.DataGridViewComboBoxColumn DgvDetalleColMotivo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DgvDetalleColResultado;
     }
 }

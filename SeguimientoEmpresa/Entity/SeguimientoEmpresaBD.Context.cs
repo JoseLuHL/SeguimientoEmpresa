@@ -15,10 +15,10 @@ namespace SeguimientoEmpresa.Entity
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class seguimiento_empresa_entity : DbContext
+    public partial class seguimiento_empresaEntity : DbContext
     {
-        public seguimiento_empresa_entity()
-            : base("name=seguimiento_empresa_entity")
+        public seguimiento_empresaEntity()
+            : base("name=seguimiento_empresaEntity")
         {
         }
     
@@ -28,13 +28,16 @@ namespace SeguimientoEmpresa.Entity
         }
     
         public virtual DbSet<Beneficiario> Beneficiario { get; set; }
+        public virtual DbSet<Empresa> Empresa { get; set; }
+        public virtual DbSet<EstadoContrato> EstadoContrato { get; set; }
+        public virtual DbSet<Genero> Genero { get; set; }
+        public virtual DbSet<Motivo> Motivo { get; set; }
+        public virtual DbSet<Sucursal> Sucursal { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TipoIdentificacion> TipoIdentificacion { get; set; }
+        public virtual DbSet<Trabajador> Trabajador { get; set; }
         public virtual DbSet<Contrato> Contrato { get; set; }
         public virtual DbSet<ContratoDetalle> ContratoDetalle { get; set; }
-        public virtual DbSet<Empresa> Empresa { get; set; }
-        public virtual DbSet<Motivo> Motivo { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<Trabajador> Trabajador { get; set; }
-        public virtual DbSet<Sucursal> Sucursal { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

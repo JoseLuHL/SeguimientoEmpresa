@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="seguimiento_empresaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="seguimiento_empresaEntity1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Beneficiario">
           <Key>
             <PropertyRef Name="ben_identificacion" />
@@ -21,30 +21,32 @@
         </EntityType>
         <EntityType Name="Contrato">
           <Key>
-            <PropertyRef Name="cont_idEmpresa" />
-            <PropertyRef Name="cont_idTrabajador" />
+            <PropertyRef Name="cont_id" />
           </Key>
           <Property Name="cont_idEmpresa" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="cont_idTrabajador" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cont_numero" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="cont_fecha" Type="nvarchar" MaxLength="50" />
-          <Property Name="cont_numero" Type="nvarchar" MaxLength="50" />
           <Property Name="cont_descripcion" Type="nvarchar" MaxLength="50" />
           <Property Name="cont_fechaInicio" Type="nvarchar" MaxLength="50" />
           <Property Name="cont_fechaFinal" Type="nvarchar" MaxLength="50" />
-          <Property Name="cont_estado" Type="nvarchar" MaxLength="50" />
+          <Property Name="cont_idestado" Type="int" />
+          <Property Name="cont_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="ContratoDetalle">
           <Key>
             <PropertyRef Name="detcon_id" />
           </Key>
+          <Property Name="detcon_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="detcon_idcontrato" Type="int" />
           <Property Name="detcon_fecha" Type="nvarchar" MaxLength="50" />
           <Property Name="detcon_hora" Type="nvarchar" MaxLength="50" />
           <Property Name="detcon_descripcion" Type="nvarchar" MaxLength="50" />
           <Property Name="detcon_idMotivo" Type="int" />
           <Property Name="detcon_resultado" Type="nvarchar" MaxLength="50" />
-          <Property Name="detcon_idEmpresa" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="detcon_idTrabajador" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="detcon_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="detcon_idEmpresa" Type="nvarchar" MaxLength="50" />
+          <Property Name="detcon_numeroContrato" Type="nvarchar" MaxLength="50" />
+          <Property Name="detcon_idTrabajador" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Empresa">
           <Key>
@@ -60,6 +62,20 @@
           <Property Name="emp_telefonoRepresentante" Type="nvarchar" MaxLength="50" />
           <Property Name="emp_contrato" Type="nvarchar" MaxLength="50" />
           <Property Name="emp_foto1" Type="image" />
+        </EntityType>
+        <EntityType Name="EstadoContrato">
+          <Key>
+            <PropertyRef Name="est_id" />
+          </Key>
+          <Property Name="est_id" Type="int" Nullable="false" />
+          <Property Name="est_descripcion" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="gen_id" />
+          </Key>
+          <Property Name="gen_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gen_descripcion" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Motivo">
           <Key>
@@ -90,13 +106,19 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="TipoIdentificacion">
+          <Key>
+            <PropertyRef Name="tipid_id" />
+          </Key>
+          <Property Name="tipid_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipid_descripcion" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Trabajador">
           <Key>
             <PropertyRef Name="trab_identificacion" />
           </Key>
-          <Property Name="trab_tipoIdentificacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="trab_tipoIdentificacion" Type="int" />
           <Property Name="trab_identificacion" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="trab_idEmpresa" Type="nvarchar" MaxLength="50" />
           <Property Name="trab_primerNombre" Type="nvarchar" MaxLength="50" />
           <Property Name="trab_segundoNombre" Type="nvarchar" MaxLength="50" />
           <Property Name="trab_primerApellido" Type="nvarchar" MaxLength="50" />
@@ -108,7 +130,9 @@
           <Property Name="trab_redSocial" Type="nvarchar" MaxLength="50" />
           <Property Name="trab_fechaNacimiento" Type="nvarchar" MaxLength="50" />
           <Property Name="trab_profesion" Type="nvarchar" MaxLength="50" />
-          <Property Name="trab_genero" Type="nvarchar" MaxLength="50" />
+          <Property Name="trab_genero" Type="int" />
+          <Property Name="trab_foto" Type="image" />
+          <Property Name="trab_idEmpresa" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Beneficiario_Trabajador">
           <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="0..1" />
@@ -134,6 +158,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Contrato_EstadoContrato">
+          <End Role="EstadoContrato" Type="Self.EstadoContrato" Multiplicity="0..1" />
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoContrato">
+              <PropertyRef Name="est_id" />
+            </Principal>
+            <Dependent Role="Contrato">
+              <PropertyRef Name="cont_idestado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Contrato_Trabajador">
           <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="1" />
           <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
@@ -147,16 +183,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ContratoDetalle_Contrato">
-          <End Role="Contrato" Type="Self.Contrato" Multiplicity="1" />
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="0..1" />
           <End Role="ContratoDetalle" Type="Self.ContratoDetalle" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Contrato">
-              <PropertyRef Name="cont_idEmpresa" />
-              <PropertyRef Name="cont_idTrabajador" />
+              <PropertyRef Name="cont_id" />
             </Principal>
             <Dependent Role="ContratoDetalle">
-              <PropertyRef Name="detcon_idEmpresa" />
-              <PropertyRef Name="detcon_idTrabajador" />
+              <PropertyRef Name="detcon_idcontrato" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -183,6 +217,30 @@
             </Principal>
             <Dependent Role="Sucursal">
               <PropertyRef Name="suc_idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajador_Genero">
+          <End Role="Genero" Type="Self.Genero" Multiplicity="0..1" />
+          <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="gen_id" />
+            </Principal>
+            <Dependent Role="Trabajador">
+              <PropertyRef Name="trab_genero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajador_TipoIdentificacion">
+          <End Role="TipoIdentificacion" Type="Self.TipoIdentificacion" Multiplicity="0..1" />
+          <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoIdentificacion">
+              <PropertyRef Name="tipid_id" />
+            </Principal>
+            <Dependent Role="Trabajador">
+              <PropertyRef Name="trab_tipoIdentificacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -217,14 +275,17 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="seguimiento_empresaModelStoreContainer">
+        <EntityContainer Name="seguimiento_empresaEntity1StoreContainer">
           <EntitySet Name="Beneficiario" EntityType="Self.Beneficiario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contrato" EntityType="Self.Contrato" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ContratoDetalle" EntityType="Self.ContratoDetalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoContrato" EntityType="Self.EstadoContrato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genero" EntityType="Self.Genero" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Motivo" EntityType="Self.Motivo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sucursal" EntityType="Self.Sucursal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoIdentificacion" EntityType="Self.TipoIdentificacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Trabajador" EntityType="Self.Trabajador" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Beneficiario_Trabajador" Association="Self.FK_Beneficiario_Trabajador">
             <End Role="Trabajador" EntitySet="Trabajador" />
@@ -232,6 +293,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Contrato_Empresa" Association="Self.FK_Contrato_Empresa">
             <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Contrato" EntitySet="Contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contrato_EstadoContrato" Association="Self.FK_Contrato_EstadoContrato">
+            <End Role="EstadoContrato" EntitySet="EstadoContrato" />
             <End Role="Contrato" EntitySet="Contrato" />
           </AssociationSet>
           <AssociationSet Name="FK_Contrato_Trabajador" Association="Self.FK_Contrato_Trabajador">
@@ -250,11 +315,19 @@
             <End Role="Empresa" EntitySet="Empresa" />
             <End Role="Sucursal" EntitySet="Sucursal" />
           </AssociationSet>
+          <AssociationSet Name="FK_Trabajador_Genero" Association="Self.FK_Trabajador_Genero">
+            <End Role="Genero" EntitySet="Genero" />
+            <End Role="Trabajador" EntitySet="Trabajador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajador_TipoIdentificacion" Association="Self.FK_Trabajador_TipoIdentificacion">
+            <End Role="TipoIdentificacion" EntitySet="TipoIdentificacion" />
+            <End Role="Trabajador" EntitySet="Trabajador" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="seguimiento_empresaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="seguimiento_empresaEntity1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Beneficiario">
           <Key>
             <PropertyRef Name="ben_identificacion" />
@@ -270,38 +343,6 @@
           <Property Name="ben_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Trabajador" Relationship="Self.FK_Beneficiario_Trabajador" FromRole="Beneficiario" ToRole="Trabajador" />
         </EntityType>
-        <EntityType Name="Contrato">
-          <Key>
-            <PropertyRef Name="cont_idEmpresa" />
-            <PropertyRef Name="cont_idTrabajador" />
-          </Key>
-          <Property Name="cont_idEmpresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="cont_idTrabajador" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="cont_fecha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="cont_numero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="cont_descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="cont_fechaInicio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="cont_fechaFinal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="cont_estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Empresa" Relationship="Self.FK_Contrato_Empresa" FromRole="Contrato" ToRole="Empresa" />
-          <NavigationProperty Name="Trabajador" Relationship="Self.FK_Contrato_Trabajador" FromRole="Contrato" ToRole="Trabajador" />
-          <NavigationProperty Name="ContratoDetalle" Relationship="Self.FK_ContratoDetalle_Contrato" FromRole="Contrato" ToRole="ContratoDetalle" />
-        </EntityType>
-        <EntityType Name="ContratoDetalle">
-          <Key>
-            <PropertyRef Name="detcon_id" />
-          </Key>
-          <Property Name="detcon_fecha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="detcon_hora" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="detcon_descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="detcon_idMotivo" Type="Int32" />
-          <Property Name="detcon_resultado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="detcon_idEmpresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="detcon_idTrabajador" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="detcon_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Contrato" Relationship="Self.FK_ContratoDetalle_Contrato" FromRole="ContratoDetalle" ToRole="Contrato" />
-          <NavigationProperty Name="Motivo" Relationship="Self.FK_ContratoDetalle_Motivo" FromRole="ContratoDetalle" ToRole="Motivo" />
-        </EntityType>
         <EntityType Name="Empresa">
           <Key>
             <PropertyRef Name="emp_nit" />
@@ -315,9 +356,25 @@
           <Property Name="emp_representanteLegar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="emp_telefonoRepresentante" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="emp_contrato" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Contrato" Relationship="Self.FK_Contrato_Empresa" FromRole="Empresa" ToRole="Contrato" />
           <Property Name="emp_foto1" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Sucursal" Relationship="seguimiento_empresaModel.FK_Sucursal_Empresa" FromRole="Empresa" ToRole="Sucursal" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.FK_Sucursal_Empresa" FromRole="Empresa" ToRole="Sucursal" />
+          <NavigationProperty Name="Contrato" Relationship="seguimiento_empresaEntity1.FK_Contrato_Empresa" FromRole="Empresa" ToRole="Contrato" />
+        </EntityType>
+        <EntityType Name="EstadoContrato">
+          <Key>
+            <PropertyRef Name="est_id" />
+          </Key>
+          <Property Name="est_id" Type="Int32" Nullable="false" />
+          <Property Name="est_descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contrato" Relationship="seguimiento_empresaEntity1.FK_Contrato_EstadoContrato" FromRole="EstadoContrato" ToRole="Contrato" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="gen_id" />
+          </Key>
+          <Property Name="gen_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gen_descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Trabajador" Relationship="Self.FK_Trabajador_Genero" FromRole="Genero" ToRole="Trabajador" />
         </EntityType>
         <EntityType Name="Motivo">
           <Key>
@@ -325,7 +382,20 @@
           </Key>
           <Property Name="mot_id" Type="Int32" Nullable="false" />
           <Property Name="mot_descipcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ContratoDetalle" Relationship="Self.FK_ContratoDetalle_Motivo" FromRole="Motivo" ToRole="ContratoDetalle" />
+          <NavigationProperty Name="ContratoDetalle" Relationship="seguimiento_empresaEntity1.FK_ContratoDetalle_Motivo" FromRole="Motivo" ToRole="ContratoDetalle" />
+        </EntityType>
+        <EntityType Name="Sucursal">
+          <Key>
+            <PropertyRef Name="suc_id" />
+          </Key>
+          <Property Name="suc_id" Type="Int32" Nullable="false" />
+          <Property Name="suc_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="suc_direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="suc_telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="suc_idencargado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="suc_encargado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="suc_idEmpresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Empresa" Relationship="Self.FK_Sucursal_Empresa" FromRole="Sucursal" ToRole="Empresa" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -337,13 +407,20 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="TipoIdentificacion">
+          <Key>
+            <PropertyRef Name="tipid_id" />
+          </Key>
+          <Property Name="tipid_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipid_descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Trabajador" Relationship="Self.FK_Trabajador_TipoIdentificacion" FromRole="TipoIdentificacion" ToRole="Trabajador" />
+        </EntityType>
         <EntityType Name="Trabajador">
           <Key>
             <PropertyRef Name="trab_identificacion" />
           </Key>
-          <Property Name="trab_tipoIdentificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trab_tipoIdentificacion" Type="Int32" />
           <Property Name="trab_identificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="trab_idEmpresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="trab_primerNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="trab_segundoNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="trab_primerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -355,9 +432,13 @@
           <Property Name="trab_redSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="trab_fechaNacimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="trab_profesion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trab_genero" Type="Int32" />
+          <Property Name="trab_foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="trab_idEmpresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Beneficiario" Relationship="Self.FK_Beneficiario_Trabajador" FromRole="Trabajador" ToRole="Beneficiario" />
-          <NavigationProperty Name="Contrato" Relationship="Self.FK_Contrato_Trabajador" FromRole="Trabajador" ToRole="Contrato" />
-          <Property Name="trab_genero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Genero" Relationship="Self.FK_Trabajador_Genero" FromRole="Trabajador" ToRole="Genero" />
+          <NavigationProperty Name="TipoIdentificacion" Relationship="Self.FK_Trabajador_TipoIdentificacion" FromRole="Trabajador" ToRole="TipoIdentificacion" />
+          <NavigationProperty Name="Contrato" Relationship="seguimiento_empresaEntity1.FK_Contrato_Trabajador" FromRole="Trabajador" ToRole="Contrato" />
         </EntityType>
         <Association Name="FK_Beneficiario_Trabajador">
           <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="0..1" />
@@ -371,83 +452,69 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Contrato_Empresa">
-          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
-          <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
+        <Association Name="FK_Sucursal_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Empresa">
               <PropertyRef Name="emp_nit" />
             </Principal>
-            <Dependent Role="Contrato">
-              <PropertyRef Name="cont_idEmpresa" />
+            <Dependent Role="Sucursal">
+              <PropertyRef Name="suc_idEmpresa" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Contrato_Trabajador">
-          <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="1" />
-          <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
+        <Association Name="FK_Trabajador_Genero">
+          <End Role="Genero" Type="Self.Genero" Multiplicity="0..1" />
+          <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Trabajador">
-              <PropertyRef Name="trab_identificacion" />
+            <Principal Role="Genero">
+              <PropertyRef Name="gen_id" />
             </Principal>
-            <Dependent Role="Contrato">
-              <PropertyRef Name="cont_idTrabajador" />
+            <Dependent Role="Trabajador">
+              <PropertyRef Name="trab_genero" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ContratoDetalle_Contrato">
-          <End Role="Contrato" Type="Self.Contrato" Multiplicity="1" />
-          <End Role="ContratoDetalle" Type="Self.ContratoDetalle" Multiplicity="*" />
+        <Association Name="FK_Trabajador_TipoIdentificacion">
+          <End Role="TipoIdentificacion" Type="Self.TipoIdentificacion" Multiplicity="0..1" />
+          <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Contrato">
-              <PropertyRef Name="cont_idEmpresa" />
-              <PropertyRef Name="cont_idTrabajador" />
+            <Principal Role="TipoIdentificacion">
+              <PropertyRef Name="tipid_id" />
             </Principal>
-            <Dependent Role="ContratoDetalle">
-              <PropertyRef Name="detcon_idEmpresa" />
-              <PropertyRef Name="detcon_idTrabajador" />
+            <Dependent Role="Trabajador">
+              <PropertyRef Name="trab_tipoIdentificacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ContratoDetalle_Motivo">
-          <End Role="Motivo" Type="Self.Motivo" Multiplicity="0..1" />
-          <End Role="ContratoDetalle" Type="Self.ContratoDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Motivo">
-              <PropertyRef Name="mot_id" />
-            </Principal>
-            <Dependent Role="ContratoDetalle">
-              <PropertyRef Name="detcon_idMotivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="seguimiento_empresa_entity" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="seguimiento_empresaEntity" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Beneficiario" EntityType="Self.Beneficiario" />
-          <EntitySet Name="Contrato" EntityType="Self.Contrato" />
-          <EntitySet Name="ContratoDetalle" EntityType="Self.ContratoDetalle" />
           <EntitySet Name="Empresa" EntityType="Self.Empresa" />
+          <EntitySet Name="EstadoContrato" EntityType="Self.EstadoContrato" />
+          <EntitySet Name="Genero" EntityType="Self.Genero" />
           <EntitySet Name="Motivo" EntityType="Self.Motivo" />
+          <EntitySet Name="Sucursal" EntityType="Self.Sucursal" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TipoIdentificacion" EntityType="Self.TipoIdentificacion" />
           <EntitySet Name="Trabajador" EntityType="Self.Trabajador" />
           <AssociationSet Name="FK_Beneficiario_Trabajador" Association="Self.FK_Beneficiario_Trabajador">
             <End Role="Trabajador" EntitySet="Trabajador" />
             <End Role="Beneficiario" EntitySet="Beneficiario" />
           </AssociationSet>
-          <AssociationSet Name="FK_Contrato_Empresa" Association="Self.FK_Contrato_Empresa">
+          <AssociationSet Name="FK_Sucursal_Empresa" Association="Self.FK_Sucursal_Empresa">
             <End Role="Empresa" EntitySet="Empresa" />
-            <End Role="Contrato" EntitySet="Contrato" />
+            <End Role="Sucursal" EntitySet="Sucursal" />
           </AssociationSet>
-          <AssociationSet Name="FK_Contrato_Trabajador" Association="Self.FK_Contrato_Trabajador">
+          <AssociationSet Name="FK_Trabajador_Genero" Association="Self.FK_Trabajador_Genero">
+            <End Role="Genero" EntitySet="Genero" />
             <End Role="Trabajador" EntitySet="Trabajador" />
-            <End Role="Contrato" EntitySet="Contrato" />
           </AssociationSet>
-          <AssociationSet Name="FK_ContratoDetalle_Contrato" Association="Self.FK_ContratoDetalle_Contrato">
-            <End Role="Contrato" EntitySet="Contrato" />
-            <End Role="ContratoDetalle" EntitySet="ContratoDetalle" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ContratoDetalle_Motivo" Association="Self.FK_ContratoDetalle_Motivo">
-            <End Role="Motivo" EntitySet="Motivo" />
-            <End Role="ContratoDetalle" EntitySet="ContratoDetalle" />
+          <AssociationSet Name="FK_Trabajador_TipoIdentificacion" Association="Self.FK_Trabajador_TipoIdentificacion">
+            <End Role="TipoIdentificacion" EntitySet="TipoIdentificacion" />
+            <End Role="Trabajador" EntitySet="Trabajador" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -465,11 +532,11 @@
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(seguimiento_empresaModel.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(seguimiento_empresaEntity1.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(seguimiento_empresaModel.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(seguimiento_empresaEntity1.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -479,12 +546,29 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="Sucursal" EntityType="seguimiento_empresaModel.Sucursal" />
-          <AssociationSet Name="FK_Sucursal_Empresa" Association="seguimiento_empresaModel.FK_Sucursal_Empresa">
+          <EntitySet Name="Contrato" EntityType="seguimiento_empresaEntity1.Contrato" />
+          <EntitySet Name="ContratoDetalle" EntityType="seguimiento_empresaEntity1.ContratoDetalle" />
+          <AssociationSet Name="FK_Contrato_Empresa" Association="seguimiento_empresaEntity1.FK_Contrato_Empresa">
             <End Role="Empresa" EntitySet="Empresa" />
-            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Contrato" EntitySet="Contrato" />
           </AssociationSet>
-        </EntityContainer>
+          <AssociationSet Name="FK_Contrato_EstadoContrato" Association="seguimiento_empresaEntity1.FK_Contrato_EstadoContrato">
+            <End Role="EstadoContrato" EntitySet="EstadoContrato" />
+            <End Role="Contrato" EntitySet="Contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contrato_Trabajador" Association="seguimiento_empresaEntity1.FK_Contrato_Trabajador">
+            <End Role="Trabajador" EntitySet="Trabajador" />
+            <End Role="Contrato" EntitySet="Contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContratoDetalle_Contrato" Association="seguimiento_empresaEntity1.FK_ContratoDetalle_Contrato">
+            <End Role="Contrato" EntitySet="Contrato" />
+            <End Role="ContratoDetalle" EntitySet="ContratoDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContratoDetalle_Motivo" Association="seguimiento_empresaEntity1.FK_ContratoDetalle_Motivo">
+            <End Role="Motivo" EntitySet="Motivo" />
+            <End Role="ContratoDetalle" EntitySet="ContratoDetalle" />
+          </AssociationSet>
+          </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -496,41 +580,109 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <EntityType Name="Sucursal">
+        <EntityType Name="Contrato">
           <Key>
-            <PropertyRef Name="suc_id" />
+            <PropertyRef Name="cont_id" />
           </Key>
-          <Property Name="suc_id" Type="Int32" Nullable="false" />
-          <Property Name="suc_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="suc_direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="suc_telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="suc_idencargado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="suc_encargado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="suc_idEmpresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Empresa" Relationship="seguimiento_empresaModel.FK_Sucursal_Empresa" FromRole="Sucursal" ToRole="Empresa" />
+          <Property Name="cont_idEmpresa" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cont_idTrabajador" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cont_numero" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cont_fecha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cont_descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cont_fechaInicio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cont_fechaFinal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cont_idestado" Type="Int32" />
+          <Property Name="cont_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Empresa" Relationship="seguimiento_empresaEntity1.FK_Contrato_Empresa" FromRole="Contrato" ToRole="Empresa" />
+          <NavigationProperty Name="EstadoContrato" Relationship="seguimiento_empresaEntity1.FK_Contrato_EstadoContrato" FromRole="Contrato" ToRole="EstadoContrato" />
+          <NavigationProperty Name="Trabajador" Relationship="seguimiento_empresaEntity1.FK_Contrato_Trabajador" FromRole="Contrato" ToRole="Trabajador" />
+          <NavigationProperty Name="ContratoDetalle" Relationship="seguimiento_empresaEntity1.FK_ContratoDetalle_Contrato" FromRole="Contrato" ToRole="ContratoDetalle" />
         </EntityType>
-        <Association Name="FK_Sucursal_Empresa">
-          <End Type="seguimiento_empresaModel.Empresa" Role="Empresa" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="seguimiento_empresaModel.Sucursal" Role="Sucursal" Multiplicity="*" />
+        <EntityType Name="ContratoDetalle">
+          <Key>
+            <PropertyRef Name="detcon_id" />
+          </Key>
+          <Property Name="detcon_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="detcon_idcontrato" Type="Int32" />
+          <Property Name="detcon_fecha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="detcon_hora" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="detcon_descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="detcon_idMotivo" Type="Int32" />
+          <Property Name="detcon_resultado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="detcon_idEmpresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="detcon_numeroContrato" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="detcon_idTrabajador" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contrato" Relationship="seguimiento_empresaEntity1.FK_ContratoDetalle_Contrato" FromRole="ContratoDetalle" ToRole="Contrato" />
+          <NavigationProperty Name="Motivo" Relationship="seguimiento_empresaEntity1.FK_ContratoDetalle_Motivo" FromRole="ContratoDetalle" ToRole="Motivo" />
+        </EntityType>
+        <Association Name="FK_Contrato_Empresa">
+          <End Type="seguimiento_empresaEntity1.Empresa" Role="Empresa" Multiplicity="1" />
+          <End Type="seguimiento_empresaEntity1.Contrato" Role="Contrato" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Empresa">
               <PropertyRef Name="emp_nit" />
             </Principal>
-            <Dependent Role="Sucursal">
-              <PropertyRef Name="suc_idEmpresa" />
+            <Dependent Role="Contrato">
+              <PropertyRef Name="cont_idEmpresa" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_Contrato_EstadoContrato">
+          <End Type="seguimiento_empresaEntity1.EstadoContrato" Role="EstadoContrato" Multiplicity="0..1" />
+          <End Type="seguimiento_empresaEntity1.Contrato" Role="Contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoContrato">
+              <PropertyRef Name="est_id" />
+            </Principal>
+            <Dependent Role="Contrato">
+              <PropertyRef Name="cont_idestado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contrato_Trabajador">
+          <End Type="seguimiento_empresaEntity1.Trabajador" Role="Trabajador" Multiplicity="1" />
+          <End Type="seguimiento_empresaEntity1.Contrato" Role="Contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajador">
+              <PropertyRef Name="trab_identificacion" />
+            </Principal>
+            <Dependent Role="Contrato">
+              <PropertyRef Name="cont_idTrabajador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContratoDetalle_Contrato">
+          <End Type="seguimiento_empresaEntity1.Contrato" Role="Contrato" Multiplicity="0..1" />
+          <End Type="seguimiento_empresaEntity1.ContratoDetalle" Role="ContratoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contrato">
+              <PropertyRef Name="cont_id" />
+            </Principal>
+            <Dependent Role="ContratoDetalle">
+              <PropertyRef Name="detcon_idcontrato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContratoDetalle_Motivo">
+          <End Type="seguimiento_empresaEntity1.Motivo" Role="Motivo" Multiplicity="0..1" />
+          <End Type="seguimiento_empresaEntity1.ContratoDetalle" Role="ContratoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Motivo">
+              <PropertyRef Name="mot_id" />
+            </Principal>
+            <Dependent Role="ContratoDetalle">
+              <PropertyRef Name="detcon_idMotivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="seguimiento_empresaModelStoreContainer" CdmEntityContainer="seguimiento_empresa_entity">
+        <EntityContainerMapping StorageEntityContainer="seguimiento_empresaEntity1StoreContainer" CdmEntityContainer="seguimiento_empresaEntity">
           <EntitySetMapping Name="Beneficiario">
-            <EntityTypeMapping TypeName="seguimiento_empresaModel.Beneficiario">
+            <EntityTypeMapping TypeName="seguimiento_empresaEntity1.Beneficiario">
               <MappingFragment StoreEntitySet="Beneficiario">
                 <ScalarProperty Name="ben_tipoIdentificacion" ColumnName="ben_tipoIdentificacion" />
                 <ScalarProperty Name="ben_idTrabajador" ColumnName="ben_idTrabajador" />
@@ -544,38 +696,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Contrato">
-            <EntityTypeMapping TypeName="seguimiento_empresaModel.Contrato">
-              <MappingFragment StoreEntitySet="Contrato">
-                <ScalarProperty Name="cont_idEmpresa" ColumnName="cont_idEmpresa" />
-                <ScalarProperty Name="cont_idTrabajador" ColumnName="cont_idTrabajador" />
-                <ScalarProperty Name="cont_fecha" ColumnName="cont_fecha" />
-                <ScalarProperty Name="cont_numero" ColumnName="cont_numero" />
-                <ScalarProperty Name="cont_descripcion" ColumnName="cont_descripcion" />
-                <ScalarProperty Name="cont_fechaInicio" ColumnName="cont_fechaInicio" />
-                <ScalarProperty Name="cont_fechaFinal" ColumnName="cont_fechaFinal" />
-                <ScalarProperty Name="cont_estado" ColumnName="cont_estado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ContratoDetalle">
-            <EntityTypeMapping TypeName="seguimiento_empresaModel.ContratoDetalle">
-              <MappingFragment StoreEntitySet="ContratoDetalle">
-                <ScalarProperty Name="detcon_fecha" ColumnName="detcon_fecha" />
-                <ScalarProperty Name="detcon_hora" ColumnName="detcon_hora" />
-                <ScalarProperty Name="detcon_descripcion" ColumnName="detcon_descripcion" />
-                <ScalarProperty Name="detcon_idMotivo" ColumnName="detcon_idMotivo" />
-                <ScalarProperty Name="detcon_resultado" ColumnName="detcon_resultado" />
-                <ScalarProperty Name="detcon_idEmpresa" ColumnName="detcon_idEmpresa" />
-                <ScalarProperty Name="detcon_idTrabajador" ColumnName="detcon_idTrabajador" />
-                <ScalarProperty Name="detcon_id" ColumnName="detcon_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Empresa">
-            <EntityTypeMapping TypeName="seguimiento_empresaModel.Empresa">
+            <EntityTypeMapping TypeName="seguimiento_empresaEntity1.Empresa">
               <MappingFragment StoreEntitySet="Empresa">
-                <ScalarProperty Name="emp_foto1" ColumnName="emp_foto1" />
                 <ScalarProperty Name="emp_nit" ColumnName="emp_nit" />
                 <ScalarProperty Name="emp_razonSocial" ColumnName="emp_razonSocial" />
                 <ScalarProperty Name="emp_telefono" ColumnName="emp_telefono" />
@@ -585,19 +708,49 @@
                 <ScalarProperty Name="emp_representanteLegar" ColumnName="emp_representanteLegar" />
                 <ScalarProperty Name="emp_telefonoRepresentante" ColumnName="emp_telefonoRepresentante" />
                 <ScalarProperty Name="emp_contrato" ColumnName="emp_contrato" />
+                <ScalarProperty Name="emp_foto1" ColumnName="emp_foto1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoContrato">
+            <EntityTypeMapping TypeName="seguimiento_empresaEntity1.EstadoContrato">
+              <MappingFragment StoreEntitySet="EstadoContrato">
+                <ScalarProperty Name="est_id" ColumnName="est_id" />
+                <ScalarProperty Name="est_descripcion" ColumnName="est_descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genero">
+            <EntityTypeMapping TypeName="seguimiento_empresaEntity1.Genero">
+              <MappingFragment StoreEntitySet="Genero">
+                <ScalarProperty Name="gen_id" ColumnName="gen_id" />
+                <ScalarProperty Name="gen_descripcion" ColumnName="gen_descripcion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Motivo">
-            <EntityTypeMapping TypeName="seguimiento_empresaModel.Motivo">
+            <EntityTypeMapping TypeName="seguimiento_empresaEntity1.Motivo">
               <MappingFragment StoreEntitySet="Motivo">
                 <ScalarProperty Name="mot_id" ColumnName="mot_id" />
                 <ScalarProperty Name="mot_descipcion" ColumnName="mot_descipcion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Sucursal">
+            <EntityTypeMapping TypeName="seguimiento_empresaEntity1.Sucursal">
+              <MappingFragment StoreEntitySet="Sucursal">
+                <ScalarProperty Name="suc_id" ColumnName="suc_id" />
+                <ScalarProperty Name="suc_nombre" ColumnName="suc_nombre" />
+                <ScalarProperty Name="suc_direccion" ColumnName="suc_direccion" />
+                <ScalarProperty Name="suc_telefono" ColumnName="suc_telefono" />
+                <ScalarProperty Name="suc_idencargado" ColumnName="suc_idencargado" />
+                <ScalarProperty Name="suc_encargado" ColumnName="suc_encargado" />
+                <ScalarProperty Name="suc_idEmpresa" ColumnName="suc_idEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="seguimiento_empresaModel.sysdiagrams">
+            <EntityTypeMapping TypeName="seguimiento_empresaEntity1.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -607,13 +760,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TipoIdentificacion">
+            <EntityTypeMapping TypeName="seguimiento_empresaEntity1.TipoIdentificacion">
+              <MappingFragment StoreEntitySet="TipoIdentificacion">
+                <ScalarProperty Name="tipid_id" ColumnName="tipid_id" />
+                <ScalarProperty Name="tipid_descripcion" ColumnName="tipid_descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Trabajador">
-            <EntityTypeMapping TypeName="seguimiento_empresaModel.Trabajador">
+            <EntityTypeMapping TypeName="seguimiento_empresaEntity1.Trabajador">
               <MappingFragment StoreEntitySet="Trabajador">
-                <ScalarProperty Name="trab_genero" ColumnName="trab_genero" />
                 <ScalarProperty Name="trab_tipoIdentificacion" ColumnName="trab_tipoIdentificacion" />
                 <ScalarProperty Name="trab_identificacion" ColumnName="trab_identificacion" />
-                <ScalarProperty Name="trab_idEmpresa" ColumnName="trab_idEmpresa" />
                 <ScalarProperty Name="trab_primerNombre" ColumnName="trab_primerNombre" />
                 <ScalarProperty Name="trab_segundoNombre" ColumnName="trab_segundoNombre" />
                 <ScalarProperty Name="trab_primerApellido" ColumnName="trab_primerApellido" />
@@ -625,23 +784,26 @@
                 <ScalarProperty Name="trab_redSocial" ColumnName="trab_redSocial" />
                 <ScalarProperty Name="trab_fechaNacimiento" ColumnName="trab_fechaNacimiento" />
                 <ScalarProperty Name="trab_profesion" ColumnName="trab_profesion" />
+                <ScalarProperty Name="trab_genero" ColumnName="trab_genero" />
+                <ScalarProperty Name="trab_foto" ColumnName="trab_foto" />
+                <ScalarProperty Name="trab_idEmpresa" ColumnName="trab_idEmpresa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="seguimiento_empresaModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="seguimiento_empresaModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="seguimiento_empresaModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="seguimiento_empresaModel.Store.sp_helpdiagramdefinition">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="seguimiento_empresaEntity1.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="seguimiento_empresaEntity1.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="seguimiento_empresaEntity1.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="seguimiento_empresaEntity1.Store.sp_helpdiagramdefinition">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="seguimiento_empresaModel.sp_helpdiagramdefinition_Result">
+              <ComplexTypeMapping TypeName="seguimiento_empresaEntity1.sp_helpdiagramdefinition_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="seguimiento_empresaModel.Store.sp_helpdiagrams">
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="seguimiento_empresaEntity1.Store.sp_helpdiagrams">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="seguimiento_empresaModel.sp_helpdiagrams_Result">
+              <ComplexTypeMapping TypeName="seguimiento_empresaEntity1.sp_helpdiagrams_Result">
                 <ScalarProperty Name="Database" ColumnName="Database" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -650,18 +812,36 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="seguimiento_empresaModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="seguimiento_empresaModel.Store.sp_upgraddiagrams" />
-          <EntitySetMapping Name="Sucursal">
-            <EntityTypeMapping TypeName="seguimiento_empresaModel.Sucursal">
-              <MappingFragment StoreEntitySet="Sucursal">
-                <ScalarProperty Name="suc_idEmpresa" ColumnName="suc_idEmpresa" />
-                <ScalarProperty Name="suc_encargado" ColumnName="suc_encargado" />
-                <ScalarProperty Name="suc_idencargado" ColumnName="suc_idencargado" />
-                <ScalarProperty Name="suc_telefono" ColumnName="suc_telefono" />
-                <ScalarProperty Name="suc_direccion" ColumnName="suc_direccion" />
-                <ScalarProperty Name="suc_nombre" ColumnName="suc_nombre" />
-                <ScalarProperty Name="suc_id" ColumnName="suc_id" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="seguimiento_empresaEntity1.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="seguimiento_empresaEntity1.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Contrato">
+            <EntityTypeMapping TypeName="seguimiento_empresaEntity1.Contrato">
+              <MappingFragment StoreEntitySet="Contrato">
+                <ScalarProperty Name="cont_id" ColumnName="cont_id" />
+                <ScalarProperty Name="cont_idestado" ColumnName="cont_idestado" />
+                <ScalarProperty Name="cont_fechaFinal" ColumnName="cont_fechaFinal" />
+                <ScalarProperty Name="cont_fechaInicio" ColumnName="cont_fechaInicio" />
+                <ScalarProperty Name="cont_descripcion" ColumnName="cont_descripcion" />
+                <ScalarProperty Name="cont_fecha" ColumnName="cont_fecha" />
+                <ScalarProperty Name="cont_numero" ColumnName="cont_numero" />
+                <ScalarProperty Name="cont_idTrabajador" ColumnName="cont_idTrabajador" />
+                <ScalarProperty Name="cont_idEmpresa" ColumnName="cont_idEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContratoDetalle">
+            <EntityTypeMapping TypeName="seguimiento_empresaEntity1.ContratoDetalle">
+              <MappingFragment StoreEntitySet="ContratoDetalle">
+                <ScalarProperty Name="detcon_idTrabajador" ColumnName="detcon_idTrabajador" />
+                <ScalarProperty Name="detcon_numeroContrato" ColumnName="detcon_numeroContrato" />
+                <ScalarProperty Name="detcon_idEmpresa" ColumnName="detcon_idEmpresa" />
+                <ScalarProperty Name="detcon_resultado" ColumnName="detcon_resultado" />
+                <ScalarProperty Name="detcon_idMotivo" ColumnName="detcon_idMotivo" />
+                <ScalarProperty Name="detcon_descripcion" ColumnName="detcon_descripcion" />
+                <ScalarProperty Name="detcon_hora" ColumnName="detcon_hora" />
+                <ScalarProperty Name="detcon_fecha" ColumnName="detcon_fecha" />
+                <ScalarProperty Name="detcon_idcontrato" ColumnName="detcon_idcontrato" />
+                <ScalarProperty Name="detcon_id" ColumnName="detcon_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

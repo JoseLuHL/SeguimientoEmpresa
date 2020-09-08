@@ -39,11 +39,22 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FontAwesome.Sharp, Version=5.14.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.5.14.1\lib\net48\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms">
+      <HintPath>..\..\..\..\..\..\CSharp-Sistema-Asistencia-Residencias-master\Sistema.Control.Asistencia\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,49 +68,58 @@
   <ItemGroup>
     <Compile Include="BD.cs" />
     <Compile Include="Entity\Beneficiario.cs">
-      <DependentUpon>SeguimientoEmpretra.tt</DependentUpon>
+      <DependentUpon>SeguimientoEmpresaBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Contrato.cs">
-      <DependentUpon>SeguimientoEmpretra.tt</DependentUpon>
+      <DependentUpon>SeguimientoEmpresaBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\ContratoDetalle.cs">
-      <DependentUpon>SeguimientoEmpretra.tt</DependentUpon>
+      <DependentUpon>SeguimientoEmpresaBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Empresa.cs">
-      <DependentUpon>SeguimientoEmpretra.tt</DependentUpon>
+      <DependentUpon>SeguimientoEmpresaBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\EstadoContrato.cs">
+      <DependentUpon>SeguimientoEmpresaBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Genero.cs">
+      <DependentUpon>SeguimientoEmpresaBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Motivo.cs">
-      <DependentUpon>SeguimientoEmpretra.tt</DependentUpon>
+      <DependentUpon>SeguimientoEmpresaBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\SeguimientoEmpretra.Context.cs">
+    <Compile Include="Entity\SeguimientoEmpresaBD.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SeguimientoEmpretra.Context.tt</DependentUpon>
+      <DependentUpon>SeguimientoEmpresaBD.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\SeguimientoEmpretra.cs">
+    <Compile Include="Entity\SeguimientoEmpresaBD.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SeguimientoEmpretra.tt</DependentUpon>
+      <DependentUpon>SeguimientoEmpresaBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\SeguimientoEmpretra.Designer.cs">
+    <Compile Include="Entity\SeguimientoEmpresaBD.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SeguimientoEmpretra.edmx</DependentUpon>
+      <DependentUpon>SeguimientoEmpresaBD.edmx</DependentUpon>
     </Compile>
     <Compile Include="Entity\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>SeguimientoEmpretra.tt</DependentUpon>
+      <DependentUpon>SeguimientoEmpresaBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\sp_helpdiagrams_Result.cs">
-      <DependentUpon>SeguimientoEmpretra.tt</DependentUpon>
+      <DependentUpon>SeguimientoEmpresaBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Sucursal.cs">
-      <DependentUpon>SeguimientoEmpretra.tt</DependentUpon>
+      <DependentUpon>SeguimientoEmpresaBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\sysdiagrams.cs">
-      <DependentUpon>SeguimientoEmpretra.tt</DependentUpon>
+      <DependentUpon>SeguimientoEmpresaBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\TipoIdentificacion.cs">
+      <DependentUpon>SeguimientoEmpresaBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Trabajador.cs">
-      <DependentUpon>SeguimientoEmpretra.tt</DependentUpon>
+      <DependentUpon>SeguimientoEmpresaBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Formularios\formContrato.cs">
       <SubType>Form</SubType>
@@ -127,6 +147,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reporte\formReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporte\formReporte.Designer.cs">
+      <DependentUpon>formReporte.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Formularios\formContrato.resx">
       <DependentUpon>formContrato.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,12 +174,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="Entity\SeguimientoEmpretra.edmx">
+    <EmbeddedResource Include="Reporte\formReporte.resx">
+      <DependentUpon>formReporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="Entity\SeguimientoEmpresaBD.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SeguimientoEmpretra.Designer.cs</LastGenOutput>
+      <LastGenOutput>SeguimientoEmpresaBD.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Entity\SeguimientoEmpretra.edmx.diagram">
-      <DependentUpon>SeguimientoEmpretra.edmx</DependentUpon>
+    <None Include="Entity\SeguimientoEmpresaBD.edmx.diagram">
+      <DependentUpon>SeguimientoEmpresaBD.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -170,15 +199,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entity\SeguimientoEmpretra.Context.tt">
+    <Content Include="Entity\SeguimientoEmpresaBD.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SeguimientoEmpretra.Context.cs</LastGenOutput>
-      <DependentUpon>SeguimientoEmpretra.edmx</DependentUpon>
+      <DependentUpon>SeguimientoEmpresaBD.edmx</DependentUpon>
+      <LastGenOutput>SeguimientoEmpresaBD.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Entity\SeguimientoEmpretra.tt">
+    <Content Include="Entity\SeguimientoEmpresaBD.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SeguimientoEmpretra.edmx</DependentUpon>
-      <LastGenOutput>SeguimientoEmpretra.cs</LastGenOutput>
+      <DependentUpon>SeguimientoEmpresaBD.edmx</DependentUpon>
+      <LastGenOutput>SeguimientoEmpresaBD.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
