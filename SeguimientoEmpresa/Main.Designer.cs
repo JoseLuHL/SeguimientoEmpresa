@@ -71,6 +71,7 @@
             this.BtnReporte.Text = "Reporte";
             this.BtnReporte.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.BtnReporte.UseVisualStyleBackColor = true;
+            this.BtnReporte.Click += new System.EventHandler(this.BtnReporte_Click);
             // 
             // BtnAyuda
             // 

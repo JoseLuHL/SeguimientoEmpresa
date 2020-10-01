@@ -1,5 +1,6 @@
 ﻿using MaterialSkin.Controls;
 using SeguimientoEmpresa.Formularios;
+using SeguimientoEmpresa.Reporte;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,6 +39,11 @@ namespace SeguimientoEmpresa
             form.ShowDialog();
             BtnTrabajador.UseWaitCursor = false;
 
+        }
+
+        private void BtnReporte_Click(object sender, EventArgs e)
+        {
+            new formReporte().ShowDialog();
         }
     }
 }

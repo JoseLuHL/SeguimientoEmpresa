@@ -29,8 +29,14 @@
         private void InitializeComponent()
         {
             this.DgTrabajador = new System.Windows.Forms.DataGridView();
+            this.DgTrabajadorColIdentificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgTrabajadorColNombre1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgTrabajadorColTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gpbxDatosGenerales = new System.Windows.Forms.GroupBox();
             this.CboTipoIde = new System.Windows.Forms.ComboBox();
+            this.gpbxFotografia = new System.Windows.Forms.GroupBox();
+            this.btnCargarF = new System.Windows.Forms.Button();
+            this.pbxFotografia = new System.Windows.Forms.PictureBox();
             this.CboGenero = new System.Windows.Forms.ComboBox();
             this.TxtEmail = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -58,15 +64,10 @@
             this.lblApellidoPaterno = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblCURP = new System.Windows.Forms.Label();
-            this.gpbxFotografia = new System.Windows.Forms.GroupBox();
-            this.btnCargarF = new System.Windows.Forms.Button();
-            this.pbxFotografia = new System.Windows.Forms.PictureBox();
             this.ventdialogArchivos = new System.Windows.Forms.OpenFileDialog();
-            this.DgTrabajadorColIdentificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DgTrabajadorColNombre1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DgTrabajadorColTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAceptar = new FontAwesome.Sharp.IconButton();
             this.BtnCancelar = new FontAwesome.Sharp.IconButton();
+            this.BtnAnotaciones = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.DgTrabajador)).BeginInit();
             this.gpbxDatosGenerales.SuspendLayout();
             this.gpbxFotografia.SuspendLayout();
@@ -95,6 +96,33 @@
             this.DgTrabajador.Size = new System.Drawing.Size(636, 232);
             this.DgTrabajador.TabIndex = 0;
             this.DgTrabajador.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgTrabajador_CellClick);
+            // 
+            // DgTrabajadorColIdentificacion
+            // 
+            this.DgTrabajadorColIdentificacion.HeaderText = "Identificacion";
+            this.DgTrabajadorColIdentificacion.Name = "DgTrabajadorColIdentificacion";
+            this.DgTrabajadorColIdentificacion.ReadOnly = true;
+            this.DgTrabajadorColIdentificacion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgTrabajadorColIdentificacion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DgTrabajadorColIdentificacion.Width = 150;
+            // 
+            // DgTrabajadorColNombre1
+            // 
+            this.DgTrabajadorColNombre1.HeaderText = "Nombres";
+            this.DgTrabajadorColNombre1.Name = "DgTrabajadorColNombre1";
+            this.DgTrabajadorColNombre1.ReadOnly = true;
+            this.DgTrabajadorColNombre1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgTrabajadorColNombre1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DgTrabajadorColNombre1.Width = 350;
+            // 
+            // DgTrabajadorColTelefono
+            // 
+            this.DgTrabajadorColTelefono.HeaderText = "Teléfono";
+            this.DgTrabajadorColTelefono.Name = "DgTrabajadorColTelefono";
+            this.DgTrabajadorColTelefono.ReadOnly = true;
+            this.DgTrabajadorColTelefono.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgTrabajadorColTelefono.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DgTrabajadorColTelefono.Width = 120;
             // 
             // gpbxDatosGenerales
             // 
@@ -144,6 +172,40 @@
             this.CboTipoIde.Name = "CboTipoIde";
             this.CboTipoIde.Size = new System.Drawing.Size(194, 25);
             this.CboTipoIde.TabIndex = 34;
+            // 
+            // gpbxFotografia
+            // 
+            this.gpbxFotografia.BackColor = System.Drawing.Color.White;
+            this.gpbxFotografia.Controls.Add(this.btnCargarF);
+            this.gpbxFotografia.Controls.Add(this.pbxFotografia);
+            this.gpbxFotografia.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpbxFotografia.Location = new System.Drawing.Point(889, 33);
+            this.gpbxFotografia.Name = "gpbxFotografia";
+            this.gpbxFotografia.Size = new System.Drawing.Size(281, 209);
+            this.gpbxFotografia.TabIndex = 15;
+            this.gpbxFotografia.TabStop = false;
+            this.gpbxFotografia.Text = "Fotografía";
+            // 
+            // btnCargarF
+            // 
+            this.btnCargarF.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCargarF.Location = new System.Drawing.Point(173, 161);
+            this.btnCargarF.Name = "btnCargarF";
+            this.btnCargarF.Size = new System.Drawing.Size(102, 30);
+            this.btnCargarF.TabIndex = 26;
+            this.btnCargarF.Text = "Cargar Foto";
+            this.btnCargarF.UseVisualStyleBackColor = true;
+            this.btnCargarF.Click += new System.EventHandler(this.btnCargarF_Click);
+            // 
+            // pbxFotografia
+            // 
+            this.pbxFotografia.InitialImage = null;
+            this.pbxFotografia.Location = new System.Drawing.Point(10, 26);
+            this.pbxFotografia.Name = "pbxFotografia";
+            this.pbxFotografia.Size = new System.Drawing.Size(143, 161);
+            this.pbxFotografia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxFotografia.TabIndex = 0;
+            this.pbxFotografia.TabStop = false;
             // 
             // CboGenero
             // 
@@ -393,70 +455,9 @@
             this.lblCURP.TabIndex = 1;
             this.lblCURP.Text = "Tipo Identificacion:";
             // 
-            // gpbxFotografia
-            // 
-            this.gpbxFotografia.BackColor = System.Drawing.Color.White;
-            this.gpbxFotografia.Controls.Add(this.btnCargarF);
-            this.gpbxFotografia.Controls.Add(this.pbxFotografia);
-            this.gpbxFotografia.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbxFotografia.Location = new System.Drawing.Point(889, 33);
-            this.gpbxFotografia.Name = "gpbxFotografia";
-            this.gpbxFotografia.Size = new System.Drawing.Size(281, 209);
-            this.gpbxFotografia.TabIndex = 15;
-            this.gpbxFotografia.TabStop = false;
-            this.gpbxFotografia.Text = "Fotografía";
-            // 
-            // btnCargarF
-            // 
-            this.btnCargarF.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCargarF.Location = new System.Drawing.Point(173, 161);
-            this.btnCargarF.Name = "btnCargarF";
-            this.btnCargarF.Size = new System.Drawing.Size(102, 30);
-            this.btnCargarF.TabIndex = 26;
-            this.btnCargarF.Text = "Cargar Foto";
-            this.btnCargarF.UseVisualStyleBackColor = true;
-            this.btnCargarF.Click += new System.EventHandler(this.btnCargarF_Click);
-            // 
-            // pbxFotografia
-            // 
-            this.pbxFotografia.InitialImage = null;
-            this.pbxFotografia.Location = new System.Drawing.Point(10, 26);
-            this.pbxFotografia.Name = "pbxFotografia";
-            this.pbxFotografia.Size = new System.Drawing.Size(143, 161);
-            this.pbxFotografia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbxFotografia.TabIndex = 0;
-            this.pbxFotografia.TabStop = false;
-            // 
             // ventdialogArchivos
             // 
             this.ventdialogArchivos.FileName = "openFileDialog1";
-            // 
-            // DgTrabajadorColIdentificacion
-            // 
-            this.DgTrabajadorColIdentificacion.HeaderText = "Identificacion";
-            this.DgTrabajadorColIdentificacion.Name = "DgTrabajadorColIdentificacion";
-            this.DgTrabajadorColIdentificacion.ReadOnly = true;
-            this.DgTrabajadorColIdentificacion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgTrabajadorColIdentificacion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DgTrabajadorColIdentificacion.Width = 150;
-            // 
-            // DgTrabajadorColNombre1
-            // 
-            this.DgTrabajadorColNombre1.HeaderText = "Nombres";
-            this.DgTrabajadorColNombre1.Name = "DgTrabajadorColNombre1";
-            this.DgTrabajadorColNombre1.ReadOnly = true;
-            this.DgTrabajadorColNombre1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgTrabajadorColNombre1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DgTrabajadorColNombre1.Width = 350;
-            // 
-            // DgTrabajadorColTelefono
-            // 
-            this.DgTrabajadorColTelefono.HeaderText = "Teléfono";
-            this.DgTrabajadorColTelefono.Name = "DgTrabajadorColTelefono";
-            this.DgTrabajadorColTelefono.ReadOnly = true;
-            this.DgTrabajadorColTelefono.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgTrabajadorColTelefono.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DgTrabajadorColTelefono.Width = 120;
             // 
             // btnAceptar
             // 
@@ -499,12 +500,33 @@
             this.BtnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnCancelar.UseVisualStyleBackColor = true;
             // 
+            // BtnAnotaciones
+            // 
+            this.BtnAnotaciones.FlatAppearance.BorderSize = 0;
+            this.BtnAnotaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAnotaciones.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.BtnAnotaciones.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAnotaciones.IconChar = FontAwesome.Sharp.IconChar.FirefoxBrowser;
+            this.BtnAnotaciones.IconColor = System.Drawing.Color.Black;
+            this.BtnAnotaciones.IconSize = 40;
+            this.BtnAnotaciones.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnAnotaciones.Location = new System.Drawing.Point(795, 530);
+            this.BtnAnotaciones.Name = "BtnAnotaciones";
+            this.BtnAnotaciones.Padding = new System.Windows.Forms.Padding(5);
+            this.BtnAnotaciones.Rotation = 0D;
+            this.BtnAnotaciones.Size = new System.Drawing.Size(355, 52);
+            this.BtnAnotaciones.TabIndex = 48;
+            this.BtnAnotaciones.Text = "Mostrar anotaciones";
+            this.BtnAnotaciones.UseVisualStyleBackColor = true;
+            this.BtnAnotaciones.Click += new System.EventHandler(this.BtnAnotaciones_Click);
+            // 
             // formTrabajador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1235, 664);
+            this.ClientSize = new System.Drawing.Size(1235, 662);
+            this.Controls.Add(this.BtnAnotaciones);
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.gpbxDatosGenerales);
@@ -562,5 +584,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DgTrabajadorColTelefono;
         private FontAwesome.Sharp.IconButton btnAceptar;
         private FontAwesome.Sharp.IconButton BtnCancelar;
+        private FontAwesome.Sharp.IconButton BtnAnotaciones;
     }
 }

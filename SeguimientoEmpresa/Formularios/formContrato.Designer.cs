@@ -58,6 +58,7 @@
             this.btnAceptar = new FontAwesome.Sharp.IconButton();
             this.BtnNuevo = new FontAwesome.Sharp.IconButton();
             this.BtnCancelar = new FontAwesome.Sharp.IconButton();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DgvEmpresa)).BeginInit();
             this.gpbxDatosGenerales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDetalle)).BeginInit();
@@ -409,12 +410,23 @@
             this.BtnCancelar.UseVisualStyleBackColor = true;
             this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(933, 288);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(181, 33);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "Anotaciones";
+            // 
             // formContrato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1386, 699);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.DgvDetalle);
             this.Controls.Add(this.gpbxDatosGenerales);
@@ -430,6 +442,7 @@
             this.gpbxDatosGenerales.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDetalle)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -465,5 +478,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DgvDetalleColDescripcion;
         private System.Windows.Forms.DataGridViewComboBoxColumn DgvDetalleColMotivo;
         private System.Windows.Forms.DataGridViewTextBoxColumn DgvDetalleColResultado;
+        private System.Windows.Forms.Label label6;
     }
 }

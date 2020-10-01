@@ -165,6 +165,7 @@ namespace SeguimientoEmpresa.Formularios
                 return;
 
             }
+
             btnAceptar.UseWaitCursor = true;
             await Task.Delay(1000);
             string proceso;
@@ -188,6 +189,11 @@ namespace SeguimientoEmpresa.Formularios
                 empresa.emp_foto1 = foto;
             }
 
+            var consulta = "SELECT [emp_nit],[emp_razonSocial] ,[emp_telefono],[emp_email],[emp_paginaWeb],[emp_direccion],[emp_representanteLegar],[emp_telefonoRepresentante],[emp_contrato],[emp_foto1] FROM [seguimiento_empresa].[dbo].[Empresa]";
+
+            var conexion = new Conexion();
+            var tabla = conexion.DataAdapter(consulta);
+            
 
             var existe = await BD.seguimiento_Empresa_Entity.Empresa.FirstOrDefaultAsync(p => p.emp_nit == empresa.emp_nit);
             if (existe != null)

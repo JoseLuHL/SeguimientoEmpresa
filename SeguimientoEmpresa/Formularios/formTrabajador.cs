@@ -221,5 +221,10 @@ namespace SeguimientoEmpresa.Formularios
         {
 
         }
+
+        private void BtnAnotaciones_Click(object sender, EventArgs e)
+        {
+            new formDetalleAnotaciones(TxtIdentificacion.Text.Trim()).ShowDialog();
+        }
     }
 }
